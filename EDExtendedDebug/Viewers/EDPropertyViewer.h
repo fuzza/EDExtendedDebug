@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import "EBValueViewerBuilder.h"
+#import "EDValueViewerBuilder.h"
 
 @interface EDPropertyViewer : NSObject
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EBValueViewerBuilder *)builder;
++ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder;
 + (BOOL)returnTypeIsAllowed:(const char *)type;
 
 @end

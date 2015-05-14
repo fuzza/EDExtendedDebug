@@ -10,10 +10,11 @@
 #import "EDPropertyValueViewer.h"
 #import "EDFormatters.h"
 
-@interface EBValueViewerBuilder : NSObject
+@interface EDValueViewerBuilder : NSObject
 
-- (EDPropertyValueViewer *)buildViewerWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
+- (EDPropertyValueViewer *)build;
 
+- (void)setupFormatter;
 - (void)setupObjectFormatter;
 - (void)setupNumericFormatter;
 - (void)setupCStringFormatter;

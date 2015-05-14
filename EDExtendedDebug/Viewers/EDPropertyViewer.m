@@ -11,7 +11,7 @@
 
 @implementation EDPropertyViewer
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EBValueViewerBuilder *)builder
++ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder
 {
     NSString *getterName = [self getterNameForProperty:property];
     const char *encodedReturnType = property_copyAttributeValue(property, "T");
@@ -21,12 +21,13 @@
         return @"";
     }
     
-    EDPropertyValueViewer *viewer = [builder buildViewerWithReceiver:object key:getterName objCType:encodedReturnType];
+    EDPropertyValueViewer *viewer = [builder build];
    
     NSString *resultDescription = @"";
     @try
     {
-        resultDescription = [NSString stringWithFormat:@"%-40s : %@\n", property_getName(property), [viewer showValue]];
+        NSString *value = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
+        resultDescription = [NSString stringWithFormat:@"%-40s : %@\n", property_getName(property), value];
     }
     @catch (NSException *exception)
     {

@@ -19,7 +19,7 @@
 - (NSString *)FUZ_debugSelf
 {
     Class objectClass = [self class];
-    EBValueViewerBuilder *builder = [EBValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyViewer class]];
     return descriptionString;
 }
@@ -27,7 +27,7 @@
 - (NSString *)FUZ_debugSelfObjects
 {
     Class objectClass = [self class];
-    EBValueViewerBuilder *builder = [EBValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 }
@@ -35,7 +35,7 @@
 - (NSString *)FUZ_debugSuperObjects
 {
     Class objectClass = [[self class] superclass];
-    EBValueViewerBuilder *builder = [EBValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 }
@@ -43,12 +43,12 @@
 - (NSString *)FUZ_debugSuper
 {
     Class objectClass = [[self class] superclass];
-    EBValueViewerBuilder *builder = [EBValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyViewer class]];
     return descriptionString;
 }
 
-- (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EBValueViewerBuilder *)builder viewerClass:(Class)viewerClass
+- (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class)viewerClass
 {
     unsigned int propertiesCount;
     objc_property_t *properties = class_copyPropertyList(class, &propertiesCount);
@@ -57,7 +57,7 @@
     {
         objc_property_t property = properties[i];
         
-        EBValueViewerBuilder *builder = [EBValueViewerBuilder new];
+        EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
         NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder];
         descriptionString = [descriptionString stringByAppendingString:propertyDescription];
     }

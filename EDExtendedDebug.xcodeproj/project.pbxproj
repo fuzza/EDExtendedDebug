@@ -13,8 +13,8 @@
 		CC57D6BE1B04EE2600E50205 /* EDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6BD1B04EE2600E50205 /* EDViewController.m */; };
 		CC57D6C11B04EE2600E50205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC57D6BF1B04EE2600E50205 /* Main.storyboard */; };
 		CC57D6C31B04EE2600E50205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC57D6C21B04EE2600E50205 /* Images.xcassets */; };
-		CC57D6D21B04EE2600E50205 /* EDExtendedDebugTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6D11B04EE2600E50205 /* EDExtendedDebugTests.m */; };
-		CC57D70D1B04EE7500E50205 /* EBValueViewerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6E71B04EE7400E50205 /* EBValueViewerBuilder.m */; };
+		CC57D6D21B04EE2600E50205 /* EDValueViewerBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6D11B04EE2600E50205 /* EDValueViewerBuilderSpec.m */; };
+		CC57D70D1B04EE7500E50205 /* EDValueViewerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6E71B04EE7400E50205 /* EDValueViewerBuilder.m */; };
 		CC57D70E1B04EE7500E50205 /* NSObject+EDExtendedDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6EA1B04EE7400E50205 /* NSObject+EDExtendedDebug.m */; };
 		CC57D70F1B04EE7500E50205 /* EDAddressFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6F01B04EE7500E50205 /* EDAddressFormatter.m */; };
 		CC57D7101B04EE7500E50205 /* EDDescriptionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6F31B04EE7500E50205 /* EDDescriptionFormatter.m */; };
@@ -52,9 +52,9 @@
 		CC57D6C21B04EE2600E50205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		CC57D6CB1B04EE2600E50205 /* EDExtendedDebugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EDExtendedDebugTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC57D6D01B04EE2600E50205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC57D6D11B04EE2600E50205 /* EDExtendedDebugTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDExtendedDebugTests.m; sourceTree = "<group>"; };
-		CC57D6E61B04EE7400E50205 /* EBValueViewerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBValueViewerBuilder.h; sourceTree = "<group>"; };
-		CC57D6E71B04EE7400E50205 /* EBValueViewerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBValueViewerBuilder.m; sourceTree = "<group>"; };
+		CC57D6D11B04EE2600E50205 /* EDValueViewerBuilderSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerBuilderSpec.m; sourceTree = "<group>"; };
+		CC57D6E61B04EE7400E50205 /* EDValueViewerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDValueViewerBuilder.h; sourceTree = "<group>"; };
+		CC57D6E71B04EE7400E50205 /* EDValueViewerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerBuilder.m; sourceTree = "<group>"; };
 		CC57D6E91B04EE7400E50205 /* NSObject+EDExtendedDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EDExtendedDebug.h"; sourceTree = "<group>"; };
 		CC57D6EA1B04EE7400E50205 /* NSObject+EDExtendedDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EDExtendedDebug.m"; sourceTree = "<group>"; };
 		CC57D6EC1B04EE7500E50205 /* EDFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFormatters.h; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		CC57D6CE1B04EE2600E50205 /* EDExtendedDebugTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC57D6D11B04EE2600E50205 /* EDExtendedDebugTests.m */,
+				CC57D6D11B04EE2600E50205 /* EDValueViewerBuilderSpec.m */,
 				CC57D6CF1B04EE2600E50205 /* Supporting Files */,
 			);
 			path = EDExtendedDebugTests;
@@ -172,8 +172,8 @@
 		CC57D6E51B04EE7400E50205 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				CC57D6E61B04EE7400E50205 /* EBValueViewerBuilder.h */,
-				CC57D6E71B04EE7400E50205 /* EBValueViewerBuilder.m */,
+				CC57D6E61B04EE7400E50205 /* EDValueViewerBuilder.h */,
+				CC57D6E71B04EE7400E50205 /* EDValueViewerBuilder.m */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -455,7 +455,7 @@
 				CC57D6BE1B04EE2600E50205 /* EDViewController.m in Sources */,
 				CC57D7101B04EE7500E50205 /* EDDescriptionFormatter.m in Sources */,
 				CC57D6BB1B04EE2600E50205 /* EDAppDelegate.m in Sources */,
-				CC57D70D1B04EE7500E50205 /* EBValueViewerBuilder.m in Sources */,
+				CC57D70D1B04EE7500E50205 /* EDValueViewerBuilder.m in Sources */,
 				CC57D7161B04EE7500E50205 /* EDPropertyObjectsViewer.m in Sources */,
 				CC57D7131B04EE7500E50205 /* EDCStringFormatter.m in Sources */,
 				CC57D70F1B04EE7500E50205 /* EDAddressFormatter.m in Sources */,
@@ -471,7 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC57D6D21B04EE2600E50205 /* EDExtendedDebugTests.m in Sources */,
+				CC57D6D21B04EE2600E50205 /* EDValueViewerBuilderSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

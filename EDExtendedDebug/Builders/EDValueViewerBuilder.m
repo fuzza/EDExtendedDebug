@@ -6,28 +6,31 @@
 //  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
 //
 
-#import "EBValueViewerBuilder.h"
+#import "EDValueViewerBuilder.h"
 
-@interface EBValueViewerBuilder ()
+@interface EDValueViewerBuilder ()
 
 @property (nonatomic, strong) EDPropertyValueViewer *viewer;
 
 @end
 
-@implementation EBValueViewerBuilder
+@implementation EDValueViewerBuilder
 
-- (EDPropertyValueViewer *)buildViewerWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
+- (EDPropertyValueViewer *)build
 {
-    self.viewer = [[EDPropertyValueViewer alloc] initWithReceiver:receiver key:key objCType:type];
-    
+    self.viewer = [[EDPropertyValueViewer alloc] init];
+    [self setupFormatter];
+    return self.viewer;
+}
+
+- (void)setupFormatter
+{
     [self setupObjectFormatter];
     [self setupNumericFormatter];
     [self setupCStringFormatter];
     [self setupSelectorFormatter];
     [self setupClassFormatter];
     [self setupStructFormatter];
-    
-    return self.viewer;
 }
 
 - (void)setupObjectFormatter

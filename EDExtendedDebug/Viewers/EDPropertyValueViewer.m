@@ -11,24 +11,20 @@
 
 @interface EDPropertyValueViewer ()
 
+@property (nonatomic, strong, readwrite) id receiver;
+@property (nonatomic, strong, readwrite) NSString *key;
+@property (nonatomic, assign, readwrite) const char *objCType;
+
 @end
 
 @implementation EDPropertyValueViewer
 
-- (instancetype)initWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
+- (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
 {
-    self = [super init];
-    if(self)
-    {
-        _receiver = receiver;
-        _key = key;
-        _objCType = type;
-    }
-    return self;
-}
-
-- (NSString *)showValue
-{
+    self.receiver = receiver;
+    self.key = key;
+    self.objCType = type;
+    
     id value = [self obtainValue];
     
     switch (self.objCType[0]) {
