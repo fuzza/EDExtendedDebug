@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38D2303D307056D12072F3BC /* libPods-EDExtendedDebugTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAD1CD96DE028819803B0F8 /* libPods-EDExtendedDebugTests.a */; };
 		CC57D6B81B04EE2600E50205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6B71B04EE2600E50205 /* main.m */; };
 		CC57D6BB1B04EE2600E50205 /* EDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6BA1B04EE2600E50205 /* EDAppDelegate.m */; };
 		CC57D6BE1B04EE2600E50205 /* EDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6BD1B04EE2600E50205 /* EDViewController.m */; };
@@ -37,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E35BB83E7C61B938BB788C4 /* Pods-EDExtendedDebugTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebugTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebugTests/Pods-EDExtendedDebugTests.release.xcconfig"; sourceTree = "<group>"; };
+		3EAD1CD96DE028819803B0F8 /* libPods-EDExtendedDebugTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EDExtendedDebugTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		462DFAD6DFFA6CF80ED6356E /* Pods-EDExtendedDebugTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebugTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebugTests/Pods-EDExtendedDebugTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CC57D6B21B04EE2600E50205 /* EDExtendedDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDExtendedDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC57D6B61B04EE2600E50205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC57D6B71B04EE2600E50205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,18 +93,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D2303D307056D12072F3BC /* libPods-EDExtendedDebugTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C52A76BD4661F1A29310808 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				462DFAD6DFFA6CF80ED6356E /* Pods-EDExtendedDebugTests.debug.xcconfig */,
+				0E35BB83E7C61B938BB788C4 /* Pods-EDExtendedDebugTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CC57D6A91B04EE2600E50205 = {
 			isa = PBXGroup;
 			children = (
 				CC57D6B41B04EE2600E50205 /* EDExtendedDebug */,
 				CC57D6CE1B04EE2600E50205 /* EDExtendedDebugTests */,
 				CC57D6B31B04EE2600E50205 /* Products */,
+				6C52A76BD4661F1A29310808 /* Pods */,
+				FC7494E17B98474CC34A2C55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,6 +307,14 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		FC7494E17B98474CC34A2C55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EAD1CD96DE028819803B0F8 /* libPods-EDExtendedDebugTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,9 +339,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC57D6D81B04EE2600E50205 /* Build configuration list for PBXNativeTarget "EDExtendedDebugTests" */;
 			buildPhases = (
+				4F0A305ACFDE0E4BBAF0E48D /* Check Pods Manifest.lock */,
 				CC57D6C71B04EE2600E50205 /* Sources */,
 				CC57D6C81B04EE2600E50205 /* Frameworks */,
 				CC57D6C91B04EE2600E50205 /* Resources */,
+				58F9529FAF9F529A9118A74C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -385,6 +411,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F0A305ACFDE0E4BBAF0E48D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		58F9529FAF9F529A9118A74C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EDExtendedDebugTests/Pods-EDExtendedDebugTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC57D6AE1B04EE2600E50205 /* Sources */ = {
@@ -543,6 +602,7 @@
 		};
 		CC57D6D91B04EE2600E50205 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 462DFAD6DFFA6CF80ED6356E /* Pods-EDExtendedDebugTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -562,6 +622,7 @@
 		};
 		CC57D6DA1B04EE2600E50205 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E35BB83E7C61B938BB788C4 /* Pods-EDExtendedDebugTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -594,6 +655,7 @@
 				CC57D6D71B04EE2600E50205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC57D6D81B04EE2600E50205 /* Build configuration list for PBXNativeTarget "EDExtendedDebugTests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +664,7 @@
 				CC57D6DA1B04EE2600E50205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
