@@ -16,7 +16,7 @@
 
 @implementation NSObject (EDExtendedDebug)
 
-- (NSString *)FUZ_debugSelf
+- (NSString *)ED_debugSelf
 {
     Class objectClass = [self class];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
@@ -24,7 +24,7 @@
     return descriptionString;
 }
 
-- (NSString *)FUZ_debugSelfObjects
+- (NSString *)ED_debugSelfObjects
 {
     Class objectClass = [self class];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
@@ -32,7 +32,7 @@
     return descriptionString;
 }
 
-- (NSString *)FUZ_debugSuperObjects
+- (NSString *)ED_debugSuperObjects
 {
     Class objectClass = [[self class] superclass];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
@@ -40,7 +40,7 @@
     return descriptionString;
 }
 
-- (NSString *)FUZ_debugSuper
+- (NSString *)ED_debugSuper
 {
     Class objectClass = [[self class] superclass];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder new];

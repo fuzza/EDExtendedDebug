@@ -10,10 +10,10 @@
 
 @interface NSObject (EDExtendedDebug)
 
-- (NSString *)FUZ_debugSelf;
-- (NSString *)FUZ_debugSuper;
+- (NSString *)ED_debugSelf;
+- (NSString *)ED_debugSuper;
 
-- (NSString *)FUZ_debugSelfObjects;
-- (NSString *)FUZ_debugSuperObjects;
+- (NSString *)ED_debugSelfObjects;
+- (NSString *)ED_debugSuperObjects;
 
 @end
