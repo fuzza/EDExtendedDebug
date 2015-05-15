@@ -1,9 +1,9 @@
 # EDExtendedDebug
 
-[![CI Status](http://img.shields.io/travis/Alexey Fayzullov/EDExtendedDebug.svg?style=flat)](https://travis-ci.org/Alexey Fayzullov/EDExtendedDebug)
-[![Version](https://img.shields.io/cocoapods/v/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
-[![License](https://img.shields.io/cocoapods/l/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
-[![Platform](https://img.shields.io/cocoapods/p/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
+#[![CI Status](http://img.shields.io/travis/Alexey Fayzullov/EDExtendedDebug.svg?style=flat)](https://travis-ci.org/Alexey Fayzullov/EDExtendedDebug)
+#[![Version](https://img.shields.io/cocoapods/v/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
+#[![License](https://img.shields.io/cocoapods/l/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
+#[![Platform](https://img.shields.io/cocoapods/p/EDExtendedDebug.svg?style=flat)](http://cocoapods.org/pods/EDExtendedDebug)
 
 ## Usage
 
@@ -22,7 +22,7 @@ pod 'EDExtendedDebug', :git => 'https://github.com/fuzza/EDExtendedDebug.git'
 
 ## Author
 
-Alexey Fayzullov, alexey.fayzullov.cr@gmail.com
+Alexey Fayzullov, alex.fuzza@gmail.com
 
 ## License
 
