@@ -17,7 +17,7 @@ EDExtendedDebug is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EDExtendedDebug"
+pod 'EDExtendedDebug', :git => 'https://github.com/fuzza/EDExtendedDebug.git'
 ```
 
 ## Author
