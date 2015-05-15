@@ -1,13 +1,13 @@
 //
-//  ViewController.m
+//  EDViewController.m
 //  EDExtendedDebug
 //
-//  Created by Alexey Fayzullov on 5/14/15.
-//  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
+//  Created by Alexey Fayzullov on 05/15/2015.
+//  Copyright (c) 2014 Alexey Fayzullov. All rights reserved.
 //
 
 #import "EDViewController.h"
-#import "NSObject+EDExtendedDebug.h"
+#import <EDExtendedDebug/NSObject+EDExtendedDebug.h>
 
 @interface EDViewController ()
 
@@ -15,9 +15,9 @@
 
 @implementation EDViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     NSLog(@"%@", [self.view ED_debugSelf]);
     NSLog(@"%@", [self.view ED_debugSuper]);
     
@@ -28,7 +28,8 @@
     NSLog(@"%@", [self.view ED_debugSuperObjectsAddress]);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

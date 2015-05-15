@@ -1,9 +1,9 @@
 //
-//  AppDelegate.h
+//  EDAppDelegate.h
 //  EDExtendedDebug
 //
-//  Created by Alexey Fayzullov on 5/14/15.
-//  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
+//  Created by CocoaPods on 05/15/2015.
+//  Copyright (c) 2014 Alexey Fayzullov. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,6 +12,4 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
 @end
-
