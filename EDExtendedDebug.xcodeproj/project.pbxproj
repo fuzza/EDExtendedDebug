@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38D2303D307056D12072F3BC /* libPods-EDExtendedDebugTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAD1CD96DE028819803B0F8 /* libPods-EDExtendedDebugTests.a */; };
+		CC1208231B0629D8001FCCE5 /* EDValueViewerAddressBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1208221B0629D8001FCCE5 /* EDValueViewerAddressBuilder.m */; };
 		CC57D6B81B04EE2600E50205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6B71B04EE2600E50205 /* main.m */; };
 		CC57D6BB1B04EE2600E50205 /* EDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6BA1B04EE2600E50205 /* EDAppDelegate.m */; };
 		CC57D6BE1B04EE2600E50205 /* EDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC57D6BD1B04EE2600E50205 /* EDViewController.m */; };
@@ -41,6 +42,8 @@
 		0E35BB83E7C61B938BB788C4 /* Pods-EDExtendedDebugTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebugTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebugTests/Pods-EDExtendedDebugTests.release.xcconfig"; sourceTree = "<group>"; };
 		3EAD1CD96DE028819803B0F8 /* libPods-EDExtendedDebugTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EDExtendedDebugTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		462DFAD6DFFA6CF80ED6356E /* Pods-EDExtendedDebugTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebugTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebugTests/Pods-EDExtendedDebugTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC1208211B0629D8001FCCE5 /* EDValueViewerAddressBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDValueViewerAddressBuilder.h; sourceTree = "<group>"; };
+		CC1208221B0629D8001FCCE5 /* EDValueViewerAddressBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerAddressBuilder.m; sourceTree = "<group>"; };
 		CC57D6B21B04EE2600E50205 /* EDExtendedDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDExtendedDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC57D6B61B04EE2600E50205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC57D6B71B04EE2600E50205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 			children = (
 				CC57D6E61B04EE7400E50205 /* EDValueViewerBuilder.h */,
 				CC57D6E71B04EE7400E50205 /* EDValueViewerBuilder.m */,
+				CC1208211B0629D8001FCCE5 /* EDValueViewerAddressBuilder.h */,
+				CC1208221B0629D8001FCCE5 /* EDValueViewerAddressBuilder.m */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1208231B0629D8001FCCE5 /* EDValueViewerAddressBuilder.m in Sources */,
 				CC57D7121B04EE7500E50205 /* EDSelectorFormatter.m in Sources */,
 				CC57D70E1B04EE7500E50205 /* NSObject+EDExtendedDebug.m in Sources */,
 				CC57D6BE1B04EE2600E50205 /* EDViewController.m in Sources */,

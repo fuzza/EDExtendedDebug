@@ -16,4 +16,7 @@
 - (NSString *)ED_debugSelfObjects;
 - (NSString *)ED_debugSuperObjects;
 
+- (NSString *)ED_debugSelfObjectsAddress;
+- (NSString *)ED_debugSuperObjectsAddress;
+
 @end

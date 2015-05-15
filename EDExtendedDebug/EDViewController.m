@@ -7,6 +7,7 @@
 //
 
 #import "EDViewController.h"
+#import "NSObject+EDExtendedDebug.h"
 
 @interface EDViewController ()
 
@@ -16,7 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"%@", [self.view ED_debugSelf]);
+    NSLog(@"%@", [self.view ED_debugSuper]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfObjects]);
+    NSLog(@"%@", [self.view ED_debugSuperObjects]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfObjectsAddress]);
+    NSLog(@"%@", [self.view ED_debugSuperObjectsAddress]);
 }
 
 - (void)didReceiveMemoryWarning {

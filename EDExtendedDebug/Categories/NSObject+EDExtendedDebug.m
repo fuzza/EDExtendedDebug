@@ -48,6 +48,23 @@
     return descriptionString;
 }
 
+- (NSString *)ED_debugSelfObjectsAddress
+{
+    Class objectClass = [self class];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder new];
+    NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
+    return descriptionString;
+
+}
+
+- (NSString *)ED_debugSuperObjectsAddress
+{
+    Class objectClass = [[self class] superclass];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder new];
+    NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
+    return descriptionString;
+}
+
 - (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class)viewerClass
 {
     unsigned int propertiesCount;
@@ -56,8 +73,6 @@
     for (int i = 0; i < propertiesCount; i++)
     {
         objc_property_t property = properties[i];
-        
-        EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
         NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder];
         descriptionString = [descriptionString stringByAppendingString:propertyDescription];
     }

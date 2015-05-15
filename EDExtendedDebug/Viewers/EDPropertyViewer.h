@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "EDValueViewerBuilder.h"
+#import "EDValueViewerAddressBuilder.h"
 
 @interface EDPropertyViewer : NSObject
 

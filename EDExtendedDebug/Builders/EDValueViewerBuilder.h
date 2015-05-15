@@ -12,6 +12,8 @@
 
 @interface EDValueViewerBuilder : NSObject
 
+@property (nonatomic, strong) EDPropertyValueViewer *viewer;
+
 - (EDPropertyValueViewer *)build;
 
 - (void)setupFormatter;

@@ -10,8 +10,6 @@
 
 @interface EDValueViewerBuilder ()
 
-@property (nonatomic, strong) EDPropertyValueViewer *viewer;
-
 @end
 
 @implementation EDValueViewerBuilder
