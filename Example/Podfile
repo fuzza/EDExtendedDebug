@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'EDExtendedDebug', :exclusive => true do
+  pod "EDExtendedDebug", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "EDExtendedDebug", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'OCMock'
+end
