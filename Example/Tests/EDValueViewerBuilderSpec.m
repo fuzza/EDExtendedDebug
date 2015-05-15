@@ -10,8 +10,8 @@
 #import <Expecta/Expecta.h>
 #import <OCMock/OCMock.h>
 
-#import "EDValueViewerBuilder.h"
-#import "EDPropertyValueViewer.h"
+#import <EDExtendedDebug/EDValueViewerBuilder.h>
+#import <EDExtendedDebug/EDPropertyValueViewer.h>
 
 SpecBegin(EDValueViewerBuilder)
 
