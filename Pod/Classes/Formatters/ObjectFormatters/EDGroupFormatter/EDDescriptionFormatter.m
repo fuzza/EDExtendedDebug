@@ -10,9 +10,11 @@
 
 @implementation EDDescriptionFormatter
 
-- (NSString *)formatValue:(id)value
+- (NSString *)formatValue:(NSValue *)value
 {
-    return [value description];
+    id __unsafe_unretained object;
+    [value getValue:&object];
+    return [object description];
 }
 
 @end

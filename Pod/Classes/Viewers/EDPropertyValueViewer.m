@@ -24,8 +24,13 @@
     self.receiver = receiver;
     self.key = key;
     self.objCType = type;
-    
+
     id value = [self obtainValue];
+    
+    if(!value)
+    {
+        return nil;
+    }
     
     switch (self.objCType[0]) {
         case '@':
@@ -42,19 +47,11 @@
         case 'Q':
         case 'f':
         case 'd':
-        {
-            return [self.numericFormatter formatNumericFromValue:value];
-        }
-            break;
         case 'c':
         case 'C':
-        {
-            return [self.numericFormatter formatCharFromValue:value];
-        }
-            break;
         case 'B':
         {
-            return [self.numericFormatter formatBoolFromValue:value];
+            return [self.numericFormatter formatValue:value];
         }
             break;
         case '*':
@@ -83,26 +80,32 @@
     }
 }
 
-- (id)obtainValue
+- (NSValue *)obtainValue
 {
-    char firstTypeSymbol = self.objCType[0];
-    if(firstTypeSymbol == '*')
-    {
-        SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
-        char *charStringValue = ((char *(*)(id, SEL))objc_msgSend)(self.receiver, getterSelector);
-        return [NSValue valueWithBytes:&charStringValue objCType:self.objCType];
+    SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
+
+    NSUInteger valueSize;
+    NSUInteger align;
+    
+    NSGetSizeAndAlignment(self.objCType, &valueSize, &align);
+    void *bytes = malloc(valueSize);
+   
+    NSMethodSignature * methodSig = [[self.receiver class] instanceMethodSignatureForSelector:getterSelector];
+    NSInvocation * invocation=[NSInvocation invocationWithMethodSignature:methodSig];
+    [invocation setTarget:self.receiver];
+    [invocation setSelector:getterSelector];
+    
+    @try {
+        [invocation invoke];
+        [invocation getReturnValue:bytes];
     }
-    else if(firstTypeSymbol == ':')
-    {
-        SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
-        SEL selectorValue = ((SEL (*)(id, SEL))objc_msgSend)(self.receiver, getterSelector);
-        NSValue *value = [NSValue valueWithBytes:&selectorValue objCType:@encode(SEL)];
-        return value;
+    @catch (NSException *exception) {
+        return nil;
     }
-    else
-    {
-        return [self.receiver valueForKey:self.key];
-    }
+
+    NSValue *value = [NSValue valueWithBytes:bytes objCType:self.objCType];
+    free(bytes);
+    return value;
 }
 
 @end

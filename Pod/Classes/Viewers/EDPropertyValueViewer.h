@@ -11,10 +11,10 @@
 
 @interface EDPropertyValueViewer : NSObject
 
-@property (nonatomic, strong) id<EDObjectFormatterProtocol> objectFormatter;
-@property (nonatomic, strong) id<EDObjectFormatterProtocol> classFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> objectFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> classFormatter;
 
-@property (nonatomic, strong) id<EDNumericFormatterProtocol> numericFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> numericFormatter;
 
 @property (nonatomic, strong) id<EDValueFormatterProtocol> cStringFormatter;
 @property (nonatomic, strong) id<EDValueFormatterProtocol> selectorFormatter;

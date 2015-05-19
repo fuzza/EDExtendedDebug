@@ -10,19 +10,35 @@
 
 @implementation EDNumericFormatter
 
-- (NSString *)formatNumericFromValue:(NSNumber *)value
+- (NSString *)formatValue:(NSValue *)value
 {
-    return [value stringValue];
-}
+    const char *typeCode = value.objCType;
 
-- (NSString *)formatBoolFromValue:(NSNumber *)value
-{
-    return [value performSelector:@selector(boolValue)] ? @"YES" : nil;
-}
+    NSUInteger valueSize;
+    NSUInteger align;
+    
+    NSGetSizeAndAlignment(value.objCType, &valueSize, &align);
+    void *bytes = malloc(valueSize);
+    [value getValue:bytes];
+    
+    switch (value.objCType[0]) {
+        case 'c': return @(*(char *)bytes).description;
+        case 'C': return @(*(unsigned char *)bytes).description;
+        case 'i': return @(*(int *)bytes).description;
+        case 'I': return @(*(unsigned int *)bytes).description;
+        case 's': return @(*(short *)bytes).description;
+        case 'S': return @(*(unsigned short *)bytes).description;
+        case 'l': return @(*(long *)bytes).description;
+        case 'L': return @(*(unsigned long *)bytes).description;
+        case 'q': return @(*(long long *)bytes).description;
+        case 'Q': return @(*(unsigned long long *)bytes).description;
+        case 'f': return @(*(float *)bytes).description;
+        case 'd': return @(*(double *)bytes).description;
+        case 'B': return @(*(_Bool *)bytes).description;
+        default: return nil;
+    }
 
-- (NSString *)formatCharFromValue:(NSNumber *)value
-{
-    return [NSString stringWithFormat:@"%c (%@)",[value charValue], [value stringValue]];
+    return @"";
 }
 
 
