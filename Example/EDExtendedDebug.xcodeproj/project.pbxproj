@@ -27,6 +27,7 @@
 		CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */; };
 		CCB8728F1B0C93B400A64FF6 /* EDFormatterTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */; };
 		CCB872911B0C963000A64FF6 /* EDStructFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */; };
+		CCB872931B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */; };
 		CCE1B18D1B0631FE00127299 /* EDValueViewerBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */; };
 		F57CA315B219A4E4CB423401 /* libPods-EDExtendedDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF20F901532A649D15F764 /* libPods-EDExtendedDebug.a */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		CCB8728D1B0C93B400A64FF6 /* EDFormatterTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFormatterTestObject.h; sourceTree = "<group>"; };
 		CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFormatterTestObject.m; sourceTree = "<group>"; };
 		CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStructFormatterSpec.m; sourceTree = "<group>"; };
+		CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAtomicTypesFormatter.m; sourceTree = "<group>"; };
 		CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerBuilderSpec.m; sourceTree = "<group>"; };
 		DDE23152C21E190979F195FC /* Pods-EDExtendedDebug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebug/Pods-EDExtendedDebug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +215,7 @@
 				CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */,
 				CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */,
 				CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */,
+				CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				CCB8728A1B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m in Sources */,
 				CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */,
 				CCB872911B0C963000A64FF6 /* EDStructFormatterSpec.m in Sources */,
+				CCB872931B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m in Sources */,
 				CCB872861B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m in Sources */,
 				CCE1B18D1B0631FE00127299 /* EDValueViewerBuilderSpec.m in Sources */,
 			);
