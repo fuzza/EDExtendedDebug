@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "EDValueFormatterProtocol.h"
 
-@interface EDNumericFormatter : NSObject <EDValueFormatterProtocol>
+@interface EDAtomicTypesFormatter : NSObject <EDValueFormatterProtocol>
 
 @end

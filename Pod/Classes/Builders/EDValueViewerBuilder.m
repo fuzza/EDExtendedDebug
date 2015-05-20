@@ -24,9 +24,7 @@
 - (void)setupFormatter
 {
     [self setupObjectFormatter];
-    [self setupNumericFormatter];
-    [self setupCStringFormatter];
-    [self setupSelectorFormatter];
+    [self setupAtomicTypesFormatter];
     [self setupClassFormatter];
     [self setupStructFormatter];
 }
@@ -36,19 +34,9 @@
     self.viewer.objectFormatter = [EDDescriptionFormatter new];
 }
 
-- (void)setupNumericFormatter
+- (void)setupAtomicTypesFormatter
 {
-    self.viewer.numericFormatter = [EDNumericFormatter new];
-}
-
-- (void)setupCStringFormatter
-{
-    self.viewer.cStringFormatter = [EDCStringFormatter new];
-}
-
-- (void)setupSelectorFormatter
-{
-    self.viewer.selectorFormatter = [EDSelectorFormatter new];
+    self.viewer.atomicTypesFormatter = [EDAtomicTypesFormatter new];
 }
 
 - (void)setupClassFormatter

@@ -4,16 +4,13 @@
 //
 //  Created by Alexey Fayzullov on 5/14/15.
 //  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
-//
 
-#import "EDNumericFormatter.h"
+#import "EDAtomicTypesFormatter.h"
 
-@implementation EDNumericFormatter
+@implementation EDAtomicTypesFormatter
 
 - (NSString *)formatValue:(NSValue *)value
 {
-    const char *typeCode = value.objCType;
-
     NSUInteger valueSize;
     NSUInteger align;
     
@@ -35,6 +32,17 @@
         case 'f': return @(*(float *)bytes).description;
         case 'd': return @(*(double *)bytes).description;
         case 'B': return @(*(_Bool *)bytes).description;
+        case 'v': return @"(void)";
+        case ':': return NSStringFromSelector(*(SEL *)bytes);
+        case '*': return [NSString stringWithFormat:@"\"%s\"", bytes];
+        case '?':
+        case '^': {
+            const void *ptr = *(const void **)bytes;
+            if (ptr)
+                return [NSString stringWithFormat:@"%p", ptr];
+            else
+                return @"(null)";
+        }
         default: return nil;
     }
 

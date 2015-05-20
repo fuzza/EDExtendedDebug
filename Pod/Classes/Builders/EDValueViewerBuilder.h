@@ -18,9 +18,7 @@
 
 - (void)setupFormatter;
 - (void)setupObjectFormatter;
-- (void)setupNumericFormatter;
-- (void)setupCStringFormatter;
-- (void)setupSelectorFormatter;
+- (void)setupAtomicTypesFormatter;
 - (void)setupClassFormatter;
 - (void)setupStructFormatter;
 

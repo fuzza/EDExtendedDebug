@@ -13,11 +13,7 @@
 
 @property (nonatomic, strong) id<EDValueFormatterProtocol> objectFormatter;
 @property (nonatomic, strong) id<EDValueFormatterProtocol> classFormatter;
-
-@property (nonatomic, strong) id<EDValueFormatterProtocol> numericFormatter;
-
-@property (nonatomic, strong) id<EDValueFormatterProtocol> cStringFormatter;
-@property (nonatomic, strong) id<EDValueFormatterProtocol> selectorFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> atomicTypesFormatter;
 @property (nonatomic, strong) id<EDValueFormatterProtocol> structFormatter;
 
 @property (nonatomic, strong, readonly) id receiver;

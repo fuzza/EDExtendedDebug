@@ -50,18 +50,11 @@
         case 'c':
         case 'C':
         case 'B':
-        {
-            return [self.numericFormatter formatValue:value];
-        }
-            break;
         case '*':
-        {
-            return [self.cStringFormatter formatValue:value];
-        }
-            break;
         case ':':
+            
         {
-            return [self.selectorFormatter formatValue:value];
+            return [self.atomicTypesFormatter formatValue:value];
         }
             break;
         case '#':

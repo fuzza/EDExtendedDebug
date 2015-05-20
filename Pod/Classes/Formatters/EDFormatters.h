@@ -11,6 +11,6 @@
 #import "EDStructFormatter.h"
 #import "EDDescriptionFormatter.h"
 #import "EDAddressFormatter.h"
-#import "EDNumericFormatter.h"
+#import "EDAtomicTypesFormatter.h"
 #import "EDSelectorFormatter.h"
 #import "EDCStringFormatter.h"
