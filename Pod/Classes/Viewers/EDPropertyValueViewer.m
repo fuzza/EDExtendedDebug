@@ -84,17 +84,16 @@
     void *bytes = malloc(valueSize);
    
     NSMethodSignature * methodSig = [[self.receiver class] instanceMethodSignatureForSelector:getterSelector];
+    if(!methodSig)
+    {
+        return nil;
+    }
+    
     NSInvocation * invocation=[NSInvocation invocationWithMethodSignature:methodSig];
     [invocation setTarget:self.receiver];
     [invocation setSelector:getterSelector];
-    
-    @try {
-        [invocation invoke];
-        [invocation getReturnValue:bytes];
-    }
-    @catch (NSException *exception) {
-        return nil;
-    }
+    [invocation invoke];
+    [invocation getReturnValue:bytes];
 
     NSValue *value = [NSValue valueWithBytes:bytes objCType:self.objCType];
     free(bytes);

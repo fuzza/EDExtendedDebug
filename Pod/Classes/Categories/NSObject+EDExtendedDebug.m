@@ -69,11 +69,17 @@
 {
     unsigned int propertiesCount;
     objc_property_t *properties = class_copyPropertyList(class, &propertiesCount);
-    NSString *descriptionString = [NSString stringWithFormat:@"\n<%@: %p>\n", [self class], self];
+    
+    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p>\n", [self class], self];
+    if(class != [self class])
+    {
+        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p>\n", [self class], class, self];
+    }
+    
     for (int i = 0; i < propertiesCount; i++)
     {
         objc_property_t property = properties[i];
-        NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder];
+        NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder indent:1];
         descriptionString = [descriptionString stringByAppendingString:propertyDescription];
     }
     free(properties);

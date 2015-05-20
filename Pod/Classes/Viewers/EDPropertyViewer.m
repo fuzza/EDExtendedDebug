@@ -11,7 +11,7 @@
 
 @implementation EDPropertyViewer
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder
++ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent
 {
     NSString *getterName = [self getterNameForProperty:property];
     
@@ -30,9 +30,14 @@
     EDPropertyValueViewer *viewer = [builder build];
    
     NSString *resultDescription = @"";
+   
+    for (NSInteger i = 0; i < indent; i++)
+    {
+        resultDescription = [resultDescription stringByAppendingString:@"\t"];
+    }
     
     NSString *value = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
-    resultDescription = [NSString stringWithFormat:@"%-40s : %@\n", property_getName(property), value];
+    resultDescription = [resultDescription stringByAppendingString:[NSString stringWithFormat:@"%s : %@\n", property_getName(property), value]];
 
     return resultDescription;
 }
