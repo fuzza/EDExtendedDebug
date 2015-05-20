@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EDObjectFormatterProtocol.h"
+#import "EDValueFormatterProtocol.h"
 
-@interface EDAddressFormatter : NSObject <EDObjectFormatterProtocol>
+@interface EDAddressFormatter : NSObject <EDValueFormatterProtocol>
 
 @end
