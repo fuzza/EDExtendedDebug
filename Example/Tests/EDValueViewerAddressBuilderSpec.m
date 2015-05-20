@@ -1,8 +1,8 @@
 //
-//  EDExtendedDebugTests.m
-//  EDExtendedDebugTests
+//  EDValueViewerAddressBuilderSpec.m
+//  EDExtendedDebug
 //
-//  Created by Alexey Fayzullov on 5/14/15.
+//  Created by Alexey Fayzullov on 5/20/15.
 //  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
 //
 
@@ -10,16 +10,16 @@
 #import <Expecta/Expecta.h>
 #import <OCMock/OCMock.h>
 
-#import <EDExtendedDebug/EDValueViewerBuilder.h>
+#import <EDExtendedDebug/EDValueViewerAddressBuilder.h>
 #import <EDExtendedDebug/EDPropertyValueViewer.h>
 
-SpecBegin(EDValueViewerBuilder)
+SpecBegin(EDValueViewerAddressBuilder)
 
 describe(@"build", ^{
     
     it(@"should return filled viewer and call setupFormatters", ^{
-
-        EDValueViewerBuilder *sut = [EDValueViewerBuilder new];
+        
+        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder new];
         
         id sutMock = OCMPartialMock(sut);
         [[sutMock expect] setupFormatter];
@@ -34,12 +34,12 @@ describe(@"build", ^{
 describe(@"setupFormatter", ^{
     it(@"should set correct formatters to viewer", ^{
         
-        EDValueViewerBuilder *sut = [EDValueViewerBuilder new];
+        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder new];
         id sutMock = OCMPartialMock(sut);
         id viewerMock = OCMClassMock([EDPropertyValueViewer class]);
         [[[sutMock stub] andReturn:viewerMock] viewer];
         
-        [[viewerMock expect] setObjectFormatter:[OCMArg isKindOfClass:[EDDescriptionFormatter class]]];
+        [[viewerMock expect] setObjectFormatter:[OCMArg isKindOfClass:[EDAddressFormatter class]]];
         [[viewerMock expect] setAtomicTypesFormatter:[OCMArg isKindOfClass:[EDAtomicTypesFormatter class]]];
         [[viewerMock expect] setStructFormatter:[OCMArg isKindOfClass:[EDStructFormatter class]]];
         [[viewerMock expect] setClassFormatter:[OCMArg isKindOfClass:[EDDescriptionFormatter class]]];
@@ -52,3 +52,4 @@ describe(@"setupFormatter", ^{
 });
 
 SpecEnd
+

@@ -10,16 +10,20 @@
 
 @implementation EDAddressFormatter
 
-- (NSString *)formatValue:(id)value
+- (NSString *)formatValue:(NSValue *)value
 {
-    id __unsafe_unretained object;
-    [value getValue:&object];
-    NSString *className = NSStringFromClass([object class]);
-    if ([className hasPrefix:@"__"])
+    if(value.objCType[0] == '@')
     {
-        className = [className stringByReplacingCharactersInRange:NSMakeRange(0, 2)  withString:@""];
+        id __unsafe_unretained object;
+        [value getValue:&object];
+        NSString *className = NSStringFromClass([object class]);
+        if ([className hasPrefix:@"__"])
+        {
+            className = [className stringByReplacingCharactersInRange:NSMakeRange(0, 2)  withString:@""];
+        }
+        return [NSString stringWithFormat:@"<%@: %p>", className, object];
     }
-    return [NSString stringWithFormat:@"<%@: %p>", className, object];
+    return nil;
 }
 
 @end

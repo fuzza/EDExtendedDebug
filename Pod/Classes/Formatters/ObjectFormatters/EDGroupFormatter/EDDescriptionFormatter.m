@@ -12,9 +12,13 @@
 
 - (NSString *)formatValue:(NSValue *)value
 {
-    id __unsafe_unretained object;
-    [value getValue:&object];
-    return [object description];
+    if(value.objCType[0] == '@')
+    {
+        id __unsafe_unretained object;
+        [value getValue:&object];
+        return [object description];
+    }
+    return nil;
 }
 
 @end

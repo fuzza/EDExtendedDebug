@@ -6,6 +6,9 @@
 
 #ifdef __OBJC__
 
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+
   #define EXP_SHORTHAND
   #import <Specta/Specta.h>
   #import <Expecta/Expecta.h>
