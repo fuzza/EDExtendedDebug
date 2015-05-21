@@ -11,5 +11,7 @@
 @protocol EDValueFormatterProtocol <NSObject>
 
 - (NSString *)formatValue:(NSValue *)value;
+- (NSArray *)registeredTypeCodes;
+- (BOOL)isRegisteredForType:(const char *)type;
 
 @end

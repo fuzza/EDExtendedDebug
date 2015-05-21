@@ -54,5 +54,21 @@
     return nil;
 }
 
+- (NSArray *)registeredTypeCodes
+{
+    return @[@('c'), @('C'), @('i'), @('I'), @('s'), @('S'), @('l'), @('L'), @('q'), @('Q'), @('f'), @('d'), @('B'), @('v'), @(':'), @('*'), @('?'), @('^')];
+}
+
+- (BOOL)isRegisteredForType:(const char *)type
+{
+    for (NSNumber *registeredType in [self registeredTypeCodes])
+    {
+        if(registeredType.charValue == type[0])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end
