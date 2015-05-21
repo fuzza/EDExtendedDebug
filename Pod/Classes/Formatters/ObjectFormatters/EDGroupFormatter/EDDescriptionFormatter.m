@@ -12,7 +12,7 @@
 
 - (NSString *)formatValue:(NSValue *)value
 {
-    if(value.objCType[0] == '@')
+    if(value.objCType[0] == '@' || value.objCType[0] == '#')
     {
         id __unsafe_unretained object;
         [value getValue:&object];

@@ -51,6 +51,17 @@ describe(@"formatValue", ^{
         EXP_expect(formattedString).to.equal([object description]);
     });
     
+    it(@"should return description of class object", ^{
+        EDDescriptionFormatter *sut = [EDDescriptionFormatter new];
+        
+        Class object = [EDFormatterTestObject class];
+        NSValue *wrappedObject = [NSValue valueWithBytes:&object objCType:@encode(Class)];
+        
+        NSString *formattedString = [sut formatValue:wrappedObject];
+        
+        EXP_expect(formattedString).to.equal(NSStringFromClass(object));
+    });
+    
     it(@"should not retain passed object", ^{
         EDDescriptionFormatter *sut = [EDDescriptionFormatter new];
         
