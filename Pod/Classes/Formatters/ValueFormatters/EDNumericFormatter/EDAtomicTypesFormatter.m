@@ -19,8 +19,8 @@
     [value getValue:bytes];
     
     switch (value.objCType[0]) {
-        case 'c': return @(*(char *)bytes).description;
-        case 'C': return @(*(unsigned char *)bytes).description;
+        case 'c': return [NSString stringWithFormat:@"%c", @(*(char *)bytes).charValue];
+        case 'C': return [NSString stringWithFormat:@"%c", @(*(unsigned char *)bytes).unsignedCharValue];
         case 'i': return @(*(int *)bytes).description;
         case 'I': return @(*(unsigned int *)bytes).description;
         case 's': return @(*(short *)bytes).description;
@@ -31,22 +31,27 @@
         case 'Q': return @(*(unsigned long long *)bytes).description;
         case 'f': return @(*(float *)bytes).description;
         case 'd': return @(*(double *)bytes).description;
-        case 'B': return @(*(_Bool *)bytes).description;
+        case 'B': return @(*(_Bool *)bytes).boolValue ? @"YES" : nil;
         case 'v': return @"(void)";
         case ':': return NSStringFromSelector(*(SEL *)bytes);
-        case '*': return [NSString stringWithFormat:@"\"%s\"", bytes];
+        case '*':
+        {
+            char *cString = NULL;
+            [value getValue:&cString];
+            return [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
+        }
         case '?':
-        case '^': {
+        case '^':
+        {
             const void *ptr = *(const void **)bytes;
             if (ptr)
                 return [NSString stringWithFormat:@"%p", ptr];
             else
-                return @"(null)";
+                return nil;
         }
         default: return nil;
     }
-
-    return @"";
+    return nil;
 }
 
 
