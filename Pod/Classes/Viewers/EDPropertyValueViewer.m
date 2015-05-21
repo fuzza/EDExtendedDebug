@@ -25,14 +25,14 @@
     self.key = key;
     self.objCType = type;
 
-    id value = [self obtainValue];
+    NSValue *value = [self obtainValue];
     
     if(!value)
     {
         return nil;
     }
     
-    switch (self.objCType[0]) {
+    switch (value.objCType[0]) {
         case '@':
         {
             return [self.objectFormatter formatValue:value];

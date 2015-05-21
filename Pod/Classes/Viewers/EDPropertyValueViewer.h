@@ -20,6 +20,7 @@
 @property (nonatomic, strong, readonly) NSString *key;
 @property (nonatomic, assign, readonly) const char *objCType;
 
+- (NSValue *)obtainValue;
 - (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
 
 @end
