@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class __EDUnderlinedTestObject;
+
 @interface EDFormatterTestObject : NSObject
+
+@property (nonatomic, strong) __EDUnderlinedTestObject *strongULObject;
 
 @end
 
 @interface __EDUnderlinedTestObject : NSObject
+
+@property (nonatomic, strong) EDFormatterTestObject *strongObject;
+@property (nonatomic, weak) EDFormatterTestObject *weakObject;
 
 @end

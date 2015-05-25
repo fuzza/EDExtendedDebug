@@ -9,6 +9,13 @@
 #import "EDViewController.h"
 #import <EDExtendedDebug/NSObject+EDExtendedDebug.h>
 
+#import <EDExtendedDebug/EDCycleDetector.h>
+
+@implementation EDObject : NSObject
+
+@end
+
+
 @interface EDViewController ()
 
 @end
@@ -26,19 +33,22 @@
     self.aFloat = 13.25;
     
     self.rect = CGRectMake(0, 0, 320, 240);
+
+    self.object = [EDObject new];
+    self.object.controller = self;
+    
+    NSLog(@"%@", [self ED_detectRetainCycles]);
     
     NSLog(@"%@", [self ED_debugSelf]);
+    NSLog(@"%@", [self.view ED_debugSelf]);
+    NSLog(@"%@", [self.view ED_debugSuper]);
+
+    NSLog(@"%@", [self.view ED_debugSelfObjects]);
+    NSLog(@"%@", [self.view ED_debugSuperObjects]);
     
-//    NSLog(@"%@", [self.view ED_debugSelf]);
-//    NSLog(@"%@", [self.view ED_debugSuper]);
-//
-//    NSLog(@"%@", [self.view ED_debugSelfObjects]);
-//    NSLog(@"%@", [self.view ED_debugSuperObjects]);
-//    
-//    NSLog(@"%@", [self.view ED_debugSelfObjectsAddress]);
-//    NSLog(@"%@", [self.view ED_debugSuperObjectsAddress]);
-//    
-//    NSLog(@"%@", [self.view ED_debugIvars]);
+    NSLog(@"%@", [self.view ED_debugSelfObjectsAddress]);
+    NSLog(@"%@", [self.view ED_debugSuperObjectsAddress]);
+
 }
 
 - (void)didReceiveMemoryWarning

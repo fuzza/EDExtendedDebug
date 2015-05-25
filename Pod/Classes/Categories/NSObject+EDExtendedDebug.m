@@ -14,6 +14,8 @@
 #import "EDPropertyViewer.h"
 #import "EDPropertyObjectsViewer.h"
 
+#import "EDCycleDetector.h"
+
 @implementation NSObject (EDExtendedDebug)
 
 - (NSString *)ED_debugSelf
@@ -63,6 +65,12 @@
     EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder new];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
+}
+
+- (NSString *)ED_detectRetainCycles
+{
+    EDCycleDetector *detector = [EDCycleDetector new];
+    return [detector objectHasRetainCycles:self];
 }
 
 - (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class)viewerClass

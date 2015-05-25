@@ -62,7 +62,7 @@ describe(@"showValue", ^{
     
     it(@"should return formatted object", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValue];
+        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
         
         const char *type = @encode(id);
     
@@ -75,7 +75,7 @@ describe(@"showValue", ^{
     
     it(@"should return formatted struct", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValue];
+        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
         
         const char *type = "{";
         
@@ -88,7 +88,7 @@ describe(@"showValue", ^{
     
     it(@"should return formatted class", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValue];
+        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
         
         const char *type = @encode(Class);
         
@@ -101,7 +101,7 @@ describe(@"showValue", ^{
     
     it(@"should return formatted class", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValue];
+        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
         
         const char *type = @encode(Class);
         
@@ -114,7 +114,7 @@ describe(@"showValue", ^{
     
     it(@"should return formatted atomic", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValue];
+        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
         
         const char *type = @encode(int);
         

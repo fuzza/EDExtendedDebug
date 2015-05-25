@@ -25,7 +25,7 @@
     self.key = key;
     self.objCType = type;
 
-    NSValue *value = [self obtainValue];
+    NSValue *value = [self obtainValueWithReceiver:receiver key:key objCType:type];
     
     if(!value)
     {
@@ -73,29 +73,29 @@
     }
 }
 
-- (NSValue *)obtainValue
+- (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
 {
-    SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
+    SEL getterSelector = sel_getUid([key cStringUsingEncoding:NSUTF8StringEncoding]);
 
     NSUInteger valueSize;
     NSUInteger align;
     
-    NSGetSizeAndAlignment(self.objCType, &valueSize, &align);
+    NSGetSizeAndAlignment(type, &valueSize, &align);
     void *bytes = malloc(valueSize);
    
-    NSMethodSignature * methodSig = [[self.receiver class] instanceMethodSignatureForSelector:getterSelector];
+    NSMethodSignature * methodSig = [[receiver class] instanceMethodSignatureForSelector:getterSelector];
     if(!methodSig)
     {
         return nil;
     }
     
     NSInvocation * invocation=[NSInvocation invocationWithMethodSignature:methodSig];
-    [invocation setTarget:self.receiver];
+    [invocation setTarget:receiver];
     [invocation setSelector:getterSelector];
     [invocation invoke];
     [invocation getReturnValue:bytes];
 
-    NSValue *value = [NSValue valueWithBytes:bytes objCType:self.objCType];
+    NSValue *value = [NSValue valueWithBytes:bytes objCType:type];
     free(bytes);
     return value;
 }

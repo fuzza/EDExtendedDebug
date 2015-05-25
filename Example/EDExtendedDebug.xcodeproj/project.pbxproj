@@ -22,6 +22,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		A60FDC3770026FFCDE4D123A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F152F420502D5FFEF5F12C /* libPods-Tests.a */; };
+		CC1A52E01B1319ED004B5390 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1A52DD1B1312F2004B5390 /* libc++.dylib */; };
+		CC1A52E21B131AA4004B5390 /* EDCycleDetectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */; };
 		CCB872861B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872851B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m */; };
 		CCB8728A1B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */; };
 		CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */; };
@@ -72,6 +74,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		710D421C326942E26F11F8EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		C9259E58D63470E44A471CA4 /* EDExtendedDebug.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EDExtendedDebug.podspec; path = ../../EDExtendedDebug.podspec; sourceTree = "<group>"; };
+		CC1A52DD1B1312F2004B5390 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDCycleDetectorSpec.m; sourceTree = "<group>"; };
 		CCB872851B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerAddressBuilderSpec.m; sourceTree = "<group>"; };
 		CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDDescriptionFormatterSpec.m; sourceTree = "<group>"; };
 		CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAddressFormatterSpec.m; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1A52E01B1319ED004B5390 /* libc++.dylib in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -134,6 +139,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC1A52DD1B1312F2004B5390 /* libc++.dylib */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -179,6 +185,7 @@
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				CCB8728D1B0C93B400A64FF6 /* EDFormatterTestObject.h */,
 				CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */,
+				CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -422,6 +429,7 @@
 				CCB8728F1B0C93B400A64FF6 /* EDFormatterTestObject.m in Sources */,
 				CCB8728A1B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m in Sources */,
 				CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */,
+				CC1A52E21B131AA4004B5390 /* EDCycleDetectorSpec.m in Sources */,
 				CCB872911B0C963000A64FF6 /* EDStructFormatterSpec.m in Sources */,
 				CCB872931B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m in Sources */,
 				CCB872861B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m in Sources */,
