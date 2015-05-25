@@ -22,7 +22,16 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		A60FDC3770026FFCDE4D123A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F152F420502D5FFEF5F12C /* libPods-Tests.a */; };
+		CC1A52E01B1319ED004B5390 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1A52DD1B1312F2004B5390 /* libc++.dylib */; };
+		CC1A52E21B131AA4004B5390 /* EDCycleDetectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */; };
+		CCB872861B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872851B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m */; };
+		CCB8728A1B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */; };
+		CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */; };
+		CCB8728F1B0C93B400A64FF6 /* EDFormatterTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */; };
+		CCB872911B0C963000A64FF6 /* EDStructFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */; };
+		CCB872931B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */; };
 		CCE1B18D1B0631FE00127299 /* EDValueViewerBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */; };
+		CCF452D11B0DD47E00D50625 /* EDPropertyValueViewerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF452D01B0DD47E00D50625 /* EDPropertyValueViewerSpec.m */; };
 		F57CA315B219A4E4CB423401 /* libPods-EDExtendedDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF20F901532A649D15F764 /* libPods-EDExtendedDebug.a */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +48,7 @@
 /* Begin PBXFileReference section */
 		020CE14317654FE7AB6AFFFF /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		09DE6246EA87E68613B260E7 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		12DDAE073DD3D28C6BA3BAA6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		12DDAE073DD3D28C6BA3BAA6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		24CF20F901532A649D15F764 /* libPods-EDExtendedDebug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EDExtendedDebug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24EFCF24CFE7DA954A049A71 /* Pods-EDExtendedDebug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebug.release.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebug/Pods-EDExtendedDebug.release.xcconfig"; sourceTree = "<group>"; };
 		58F152F420502D5FFEF5F12C /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,9 +72,19 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		710D421C326942E26F11F8EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		C9259E58D63470E44A471CA4 /* EDExtendedDebug.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EDExtendedDebug.podspec; path = ../EDExtendedDebug.podspec; sourceTree = "<group>"; };
+		710D421C326942E26F11F8EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		C9259E58D63470E44A471CA4 /* EDExtendedDebug.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EDExtendedDebug.podspec; path = ../../EDExtendedDebug.podspec; sourceTree = "<group>"; };
+		CC1A52DD1B1312F2004B5390 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDCycleDetectorSpec.m; sourceTree = "<group>"; };
+		CCB872851B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerAddressBuilderSpec.m; sourceTree = "<group>"; };
+		CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDDescriptionFormatterSpec.m; sourceTree = "<group>"; };
+		CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAddressFormatterSpec.m; sourceTree = "<group>"; };
+		CCB8728D1B0C93B400A64FF6 /* EDFormatterTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFormatterTestObject.h; sourceTree = "<group>"; };
+		CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFormatterTestObject.m; sourceTree = "<group>"; };
+		CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStructFormatterSpec.m; sourceTree = "<group>"; };
+		CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAtomicTypesFormatter.m; sourceTree = "<group>"; };
 		CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDValueViewerBuilderSpec.m; sourceTree = "<group>"; };
+		CCF452D01B0DD47E00D50625 /* EDPropertyValueViewerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDPropertyValueViewerSpec.m; path = Tests/EDPropertyValueViewerSpec.m; sourceTree = "<group>"; };
 		DDE23152C21E190979F195FC /* Pods-EDExtendedDebug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EDExtendedDebug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EDExtendedDebug/Pods-EDExtendedDebug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1A52E01B1319ED004B5390 /* libc++.dylib in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -119,6 +139,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC1A52DD1B1312F2004B5390 /* libc++.dylib */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -152,14 +173,19 @@
 				6003F599195388D20070C39A /* main.m */,
 				6003F59B195388D20070C39A /* EDExtendedDebug-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */,
+				CCF452CF1B0DD3E300D50625 /* Viewers */,
+				CCB872881B0C8B9200A64FF6 /* Formatters */,
+				CCB872871B0C8ACD00A64FF6 /* Builders */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				CCB8728D1B0C93B400A64FF6 /* EDFormatterTestObject.h */,
+				CCB8728E1B0C93B400A64FF6 /* EDFormatterTestObject.m */,
+				CC1A52E11B131AA4004B5390 /* EDCycleDetectorSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -171,7 +197,7 @@
 				6003F5B8195388D20070C39A /* InfoPlist.strings */,
 				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
@@ -181,7 +207,36 @@
 				710D421C326942E26F11F8EC /* README.md */,
 				12DDAE073DD3D28C6BA3BAA6 /* LICENSE */,
 			);
-			name = "Podspec Metadata";
+			path = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		CCB872871B0C8ACD00A64FF6 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				CCE1B18C1B0631FE00127299 /* EDValueViewerBuilderSpec.m */,
+				CCB872851B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m */,
+			);
+			name = Builders;
+			sourceTree = "<group>";
+		};
+		CCB872881B0C8B9200A64FF6 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				CCB872891B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m */,
+				CCB8728B1B0C928100A64FF6 /* EDAddressFormatterSpec.m */,
+				CCB872901B0C963000A64FF6 /* EDStructFormatterSpec.m */,
+				CCB872921B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m */,
+			);
+			name = Formatters;
+			sourceTree = "<group>";
+		};
+		CCF452CF1B0DD3E300D50625 /* Viewers */ = {
+			isa = PBXGroup;
+			children = (
+				CCF452D01B0DD47E00D50625 /* EDPropertyValueViewerSpec.m */,
+			);
+			name = Viewers;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		EADD31976C6DFAB0B8FD617A /* Pods */ = {
@@ -371,6 +426,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCB8728F1B0C93B400A64FF6 /* EDFormatterTestObject.m in Sources */,
+				CCB8728A1B0C8BB000A64FF6 /* EDDescriptionFormatterSpec.m in Sources */,
+				CCB8728C1B0C928100A64FF6 /* EDAddressFormatterSpec.m in Sources */,
+				CC1A52E21B131AA4004B5390 /* EDCycleDetectorSpec.m in Sources */,
+				CCB872911B0C963000A64FF6 /* EDStructFormatterSpec.m in Sources */,
+				CCB872931B0C9BFA00A64FF6 /* EDAtomicTypesFormatter.m in Sources */,
+				CCB872861B0C894300A64FF6 /* EDValueViewerAddressBuilderSpec.m in Sources */,
+				CCF452D11B0DD47E00D50625 /* EDPropertyValueViewerSpec.m in Sources */,
 				CCE1B18D1B0631FE00127299 /* EDValueViewerBuilderSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +455,7 @@
 				6003F597195388D20070C39A /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		6003F59F195388D20070C39A /* Main_iPhone.storyboard */ = {
@@ -400,6 +464,7 @@
 				6003F5A0195388D20070C39A /* Base */,
 			);
 			name = Main_iPhone.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		6003F5A2195388D20070C39A /* Main_iPad.storyboard */ = {
@@ -408,6 +473,7 @@
 				6003F5A3195388D20070C39A /* Base */,
 			);
 			name = Main_iPad.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
@@ -416,6 +482,7 @@
 				6003F5B9195388D20070C39A /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -500,8 +567,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EDExtendedDebug/EDExtendedDebug-Prefix.pch";
-				INFOPLIST_FILE = "EDExtendedDebug/EDExtendedDebug-Info.plist";
+				GCC_PREFIX_HEADER = "EDExtendedDebug/Supporting Files/EDExtendedDebug-Prefix.pch";
+				INFOPLIST_FILE = "EDExtendedDebug/Supporting Files/EDExtendedDebug-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -514,8 +581,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EDExtendedDebug/EDExtendedDebug-Prefix.pch";
-				INFOPLIST_FILE = "EDExtendedDebug/EDExtendedDebug-Info.plist";
+				GCC_PREFIX_HEADER = "EDExtendedDebug/Supporting Files/EDExtendedDebug-Prefix.pch";
+				INFOPLIST_FILE = "EDExtendedDebug/Supporting Files/EDExtendedDebug-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -532,12 +599,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/Supporting Files/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/Supporting Files/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -555,8 +622,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Tests/Supporting Files/Tests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Supporting Files/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -11,19 +11,16 @@
 
 @interface EDPropertyValueViewer : NSObject
 
-@property (nonatomic, strong) id<EDObjectFormatterProtocol> objectFormatter;
-@property (nonatomic, strong) id<EDObjectFormatterProtocol> classFormatter;
-
-@property (nonatomic, strong) id<EDNumericFormatterProtocol> numericFormatter;
-
-@property (nonatomic, strong) id<EDValueFormatterProtocol> cStringFormatter;
-@property (nonatomic, strong) id<EDValueFormatterProtocol> selectorFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> objectFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> classFormatter;
+@property (nonatomic, strong) id<EDValueFormatterProtocol> atomicTypesFormatter;
 @property (nonatomic, strong) id<EDValueFormatterProtocol> structFormatter;
 
 @property (nonatomic, strong, readonly) id receiver;
 @property (nonatomic, strong, readonly) NSString *key;
 @property (nonatomic, assign, readonly) const char *objCType;
 
+- (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
 - (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
 
 @end

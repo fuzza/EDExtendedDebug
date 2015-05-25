@@ -24,10 +24,15 @@
     self.receiver = receiver;
     self.key = key;
     self.objCType = type;
+
+    NSValue *value = [self obtainValueWithReceiver:receiver key:key objCType:type];
     
-    id value = [self obtainValue];
+    if(!value)
+    {
+        return nil;
+    }
     
-    switch (self.objCType[0]) {
+    switch (value.objCType[0]) {
         case '@':
         {
             return [self.objectFormatter formatValue:value];
@@ -42,29 +47,14 @@
         case 'Q':
         case 'f':
         case 'd':
-        {
-            return [self.numericFormatter formatNumericFromValue:value];
-        }
-            break;
         case 'c':
         case 'C':
-        {
-            return [self.numericFormatter formatCharFromValue:value];
-        }
-            break;
         case 'B':
-        {
-            return [self.numericFormatter formatBoolFromValue:value];
-        }
-            break;
         case '*':
-        {
-            return [self.cStringFormatter formatValue:value];
-        }
-            break;
         case ':':
+            
         {
-            return [self.selectorFormatter formatValue:value];
+            return [self.atomicTypesFormatter formatValue:value];
         }
             break;
         case '#':
@@ -83,26 +73,31 @@
     }
 }
 
-- (id)obtainValue
+- (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
 {
-    char firstTypeSymbol = self.objCType[0];
-    if(firstTypeSymbol == '*')
+    SEL getterSelector = sel_getUid([key cStringUsingEncoding:NSUTF8StringEncoding]);
+
+    NSUInteger valueSize;
+    NSUInteger align;
+    
+    NSGetSizeAndAlignment(type, &valueSize, &align);
+    void *bytes = malloc(valueSize);
+   
+    NSMethodSignature * methodSig = [[receiver class] instanceMethodSignatureForSelector:getterSelector];
+    if(!methodSig)
     {
-        SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
-        char *charStringValue = ((char *(*)(id, SEL))objc_msgSend)(self.receiver, getterSelector);
-        return [NSValue valueWithBytes:&charStringValue objCType:self.objCType];
+        return nil;
     }
-    else if(firstTypeSymbol == ':')
-    {
-        SEL getterSelector = sel_getUid([self.key cStringUsingEncoding:NSUTF8StringEncoding]);
-        SEL selectorValue = ((SEL (*)(id, SEL))objc_msgSend)(self.receiver, getterSelector);
-        NSValue *value = [NSValue valueWithBytes:&selectorValue objCType:@encode(SEL)];
-        return value;
-    }
-    else
-    {
-        return [self.receiver valueForKey:self.key];
-    }
+    
+    NSInvocation * invocation=[NSInvocation invocationWithMethodSignature:methodSig];
+    [invocation setTarget:receiver];
+    [invocation setSelector:getterSelector];
+    [invocation invoke];
+    [invocation getReturnValue:bytes];
+
+    NSValue *value = [NSValue valueWithBytes:bytes objCType:type];
+    free(bytes);
+    return value;
 }
 
 @end

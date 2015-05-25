@@ -13,7 +13,7 @@
 
 @interface EDPropertyViewer : NSObject
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder;
++ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent;
 + (BOOL)returnTypeIsAllowed:(const char *)type;
 
 @end

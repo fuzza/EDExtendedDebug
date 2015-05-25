@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class EDViewController;
+
+@interface EDObject : NSObject
+
+@property (nonatomic, strong) EDViewController *controller;
+
+@end
+
 @interface EDViewController : UIViewController
+
+@property (nonatomic, assign) SEL selector;
+@property (nonatomic, strong) Class aClass;
+@property (nonatomic, assign) CGPoint point;
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, assign) CGSize size;
+
+@property (nonatomic, assign) NSInteger anInteger;
+@property (nonatomic, assign) CGFloat aFloat;
+
+@property (nonatomic, strong) EDObject *object;
 
 @end

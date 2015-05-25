@@ -10,9 +10,15 @@
 
 @implementation EDDescriptionFormatter
 
-- (NSString *)formatValue:(id)value
+- (NSString *)formatValue:(NSValue *)value
 {
-    return [value description];
+    if(value.objCType[0] == '@' || value.objCType[0] == '#')
+    {
+        id __unsafe_unretained object;
+        [value getValue:&object];
+        return [object description];
+    }
+    return nil;
 }
 
 @end

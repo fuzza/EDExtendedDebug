@@ -11,9 +11,15 @@
 
 @implementation EDPropertyViewer
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder
++ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent
 {
     NSString *getterName = [self getterNameForProperty:property];
+    
+    if([getterName characterAtIndex:0] == '_')
+    {
+        return @"";
+    }
+    
     const char *encodedReturnType = property_copyAttributeValue(property, "T");
     
     if(![self returnTypeIsAllowed:encodedReturnType])
@@ -24,15 +30,15 @@
     EDPropertyValueViewer *viewer = [builder build];
    
     NSString *resultDescription = @"";
-    @try
+   
+    for (NSInteger i = 0; i < indent; i++)
     {
-        NSString *value = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
-        resultDescription = [NSString stringWithFormat:@"%-40s : %@\n", property_getName(property), value];
+        resultDescription = [resultDescription stringByAppendingString:@"\t"];
     }
-    @catch (NSException *exception)
-    {
-        return @"";
-    }
+    
+    NSString *value = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
+    resultDescription = [resultDescription stringByAppendingString:[NSString stringWithFormat:@"%s : %@\n", property_getName(property), value]];
+
     return resultDescription;
 }
 

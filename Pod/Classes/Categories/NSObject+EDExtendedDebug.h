@@ -19,4 +19,6 @@
 - (NSString *)ED_debugSelfObjectsAddress;
 - (NSString *)ED_debugSuperObjectsAddress;
 
+- (NSString *)ED_detectRetainCycles;
+
 @end

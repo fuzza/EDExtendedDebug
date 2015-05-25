@@ -1,5 +1,5 @@
 //
-//  FUZFormatterProtocol.h
+//  FUZStringValueFormatter.h
 //  FUZExtendedDebug
 //
 //  Created by Alexey Fayzullov on 5/14/15.
@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EDValueFormatterProtocol.h"
 
-@protocol EDObjectFormatterProtocol <NSObject>
-
-- (NSString *)formatValue:(id)value;
+@interface EDAtomicTypesFormatter : NSObject <EDValueFormatterProtocol>
 
 @end
