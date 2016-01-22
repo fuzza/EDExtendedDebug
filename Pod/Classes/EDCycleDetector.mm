@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include <vector>
 
+#import "EDPropertyHelper.h"
+
 @implementation EDCycleDetector
 
 - (NSString *)objectHasRetainCycles:(id)receiver
@@ -25,14 +27,14 @@
     for(std::vector<objc_property_t>::iterator it = properties.begin(); it != properties.end(); ++it)
     {
         objc_property_t property = *it;
-        id objectValue = [self objectFromProperty:property receiver:receiver];
+        id objectValue = [EDPropertyHelper objectValueOfProperty:property forObject:receiver];
         
         std::vector<objc_property_t>childProperties = [self propertiesOfObject:objectValue];
         
         for(std::vector<objc_property_t>::iterator childIt = childProperties.begin(); childIt != childProperties.end(); ++childIt)
         {
             objc_property_t childProperty = *childIt;
-            id childObjectValue = [self objectFromProperty:childProperty receiver:objectValue];
+            id childObjectValue = [EDPropertyHelper objectValueOfProperty:childProperty forObject:objectValue];
             
             if(receiver == childObjectValue)
             {
@@ -44,28 +46,6 @@
     
     properties.clear();
     return returnValue;
-}
-
-- (id)objectFromProperty:(objc_property_t)property receiver:(id)receiver
-{
-    const char *encodedReturnType = property_copyAttributeValue(property, "T");
-    NSString *getter = [self getterNameForProperty:property];
-    
-    EDValueViewerAddressBuilder *builder = [[EDValueViewerAddressBuilder alloc] init];
-    [builder build];
-    
-    NSValue *resultValue = [builder.viewer obtainValueWithReceiver:receiver key:getter objCType:encodedReturnType];
-    
-    if(resultValue)
-    {
-        __unsafe_unretained id resultObject;
-        [resultValue getValue:&resultObject];
-        if(resultObject)
-        {
-            return resultObject;
-        }
-    }
-    return nil;
 }
 
 - (std::vector<objc_property_t>)propertiesOfObject:(id)object
@@ -87,22 +67,6 @@
     }
     free(properties);
     return filteredProperties;
-}
-
-
-- (NSString *)getterNameForProperty:(objc_property_t)property
-{
-    const char *getterName = property_copyAttributeValue(property, "G");
-    if(getterName == nil)
-    {
-        return [self nameOfProperty:property];
-    }
-    return [NSString stringWithCString:getterName encoding:NSUTF8StringEncoding];
-}
-
-- (NSString *)nameOfProperty:(objc_property_t)property
-{
-    return [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
 }
 
 @end
