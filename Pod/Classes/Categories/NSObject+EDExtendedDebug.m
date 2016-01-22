@@ -84,7 +84,7 @@
         descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p>\n", [self class], class, self];
     }
     
-    for (int i = 0; i < propertiesCount; i++)
+    for (unsigned int i = 0; i < propertiesCount; i++)
     {
         objc_property_t property = properties[i];
         NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder indent:1];

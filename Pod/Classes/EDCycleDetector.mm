@@ -75,7 +75,7 @@
     
     std::vector<objc_property_t> filteredProperties;
     
-    for(int i = 0; i < propertiesCount; i++)
+    for(unsigned int i = 0; i < propertiesCount; i++)
     {
         const char *encodedReturnType = property_copyAttributeValue(properties[i], "T");
         char *strongAttribute = property_copyAttributeValue(properties[i], "&");
