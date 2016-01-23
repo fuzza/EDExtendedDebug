@@ -31,7 +31,7 @@
         case 'Q': return @(*(unsigned long long *)bytes).description;
         case 'f': return @(*(float *)bytes).description;
         case 'd': return @(*(double *)bytes).description;
-        case 'B': return @(*(_Bool *)bytes).boolValue ? @"YES" : nil;
+        case 'B': return @(*(_Bool *)bytes).boolValue ? @"YES" : @"NO";
         case 'v': return @"(void)";
         case ':': return NSStringFromSelector(*(SEL *)bytes);
         case '*':

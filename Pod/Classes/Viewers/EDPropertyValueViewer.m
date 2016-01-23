@@ -21,56 +21,55 @@
 
 - (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
 {
+    NSString *valueDescription = nil;
+    
     self.receiver = receiver;
     self.key = key;
     self.objCType = type;
 
-    NSValue *value = [self obtainValueWithReceiver:receiver key:key objCType:type];
+    NSValue *value = nil;
+    @try {
+        value = [self obtainValueWithReceiver:receiver key:key objCType:type];
+    }
+    @catch (NSException *exception) {
+        valueDescription = @"Exception thrown while obtaining value";
+    }
+    @finally {}
     
-    if(!value)
+    if(value)
     {
-        return nil;
+        switch (value.objCType[0]) {
+            case '@':
+                valueDescription = [self.objectFormatter formatValue:value];
+                break;
+            case 'i':
+            case 's':
+            case 'l':
+            case 'q':
+            case 'I':
+            case 'S':
+            case 'L':
+            case 'Q':
+            case 'f':
+            case 'd':
+            case 'c':
+            case 'C':
+            case 'B':
+            case '*':
+            case ':':
+                valueDescription = [self.atomicTypesFormatter formatValue:value];
+                break;
+            case '#':
+                valueDescription = [self.classFormatter formatValue:value];
+                break;
+            case '{':
+                valueDescription = [self.structFormatter formatValue:value];
+                break;
+            default:
+                valueDescription = @"???";
+        }
     }
-    
-    switch (value.objCType[0]) {
-        case '@':
-        {
-            return [self.objectFormatter formatValue:value];
-        }
-        case 'i':
-        case 's':
-        case 'l':
-        case 'q':
-        case 'I':
-        case 'S':
-        case 'L':
-        case 'Q':
-        case 'f':
-        case 'd':
-        case 'c':
-        case 'C':
-        case 'B':
-        case '*':
-        case ':':
-            
-        {
-            return [self.atomicTypesFormatter formatValue:value];
-        }
-            break;
-        case '#':
-        {
-            return [self.classFormatter formatValue:value];
-        }
-            break;
-        case '{':
-        {
-            return [self.structFormatter formatValue:value];
-        }
-            break;
-        default:
-            return @"???";
-            break;
-    }
+    return valueDescription;
 }
 
 - (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type

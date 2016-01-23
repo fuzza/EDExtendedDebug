@@ -13,32 +13,32 @@
 
 + (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent
 {
-    NSString *getterName = [self getterNameForProperty:property];
-    
-    if([getterName characterAtIndex:0] == '_')
+    NSString *resultDescription = @"";
+    for (NSInteger i = 0; i < indent; i++)
     {
-        return @"";
+        resultDescription = [resultDescription stringByAppendingString:@"\t"];
     }
+    resultDescription = [resultDescription stringByAppendingFormat:@"%s : ", property_getName(property)];
+    
+    NSString *getterName = [self getterNameForProperty:property];
     
     const char *encodedReturnType = property_copyAttributeValue(property, "T");
     
     if(![self returnTypeIsAllowed:encodedReturnType])
     {
-        return @"";
+        resultDescription = [resultDescription stringByAppendingString:@" type is unsupported by current version of ED_extendedDebug\n"];
     }
-    
-    EDPropertyValueViewer *viewer = [builder build];
-   
-    NSString *resultDescription = @"";
-   
-    for (NSInteger i = 0; i < indent; i++)
-    {
-        resultDescription = [resultDescription stringByAppendingString:@"\t"];
-    }
-    
-    NSString *value = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
-    resultDescription = [resultDescription stringByAppendingString:[NSString stringWithFormat:@"%s : %@\n", property_getName(property), value]];
+    else {
+        EDPropertyValueViewer *viewer = [builder build];
 
+        NSString *valueDescription = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
+        if (valueDescription) {
+            resultDescription = [resultDescription stringByAppendingFormat:@"%@\n", valueDescription];
+        }
+        else {
+            resultDescription = [resultDescription stringByAppendingString:@"property getter is not implemented - it's inherited as protocol member\n"];
+        }
+    }
     return resultDescription;
 }
 
