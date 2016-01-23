@@ -75,29 +75,34 @@
 
 - (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
 {
-    SEL getterSelector = sel_getUid([key cStringUsingEncoding:NSUTF8StringEncoding]);
+    NSValue *returnValue = nil;
+    SEL getterSelector = sel_getUid([key UTF8String]);
 
-    NSUInteger valueSize;
-    NSUInteger align;
-    
-    NSGetSizeAndAlignment(type, &valueSize, &align);
-    void *bytes = malloc(valueSize);
-   
-    NSMethodSignature * methodSig = [[receiver class] instanceMethodSignatureForSelector:getterSelector];
-    if(!methodSig)
-    {
-        return nil;
+// -respondsToSelector: check is vital, since there's protocols with optional properties.
+// Instances of classes, that conform to protocol with optional properties has descriptions
+// of that properties returned in class_copyPropertyList, however, no getter and setter implemented
+// Fixes crash for example project on iOS 9 for -[UIView ED_debugSelf]
+    if ([receiver respondsToSelector:getterSelector]) {
+        NSUInteger valueSize;
+        NSUInteger align;
+        
+        NSGetSizeAndAlignment(type, &valueSize, &align);
+        void *bytes = malloc(valueSize);
+       
+        NSMethodSignature * methodSig = [[receiver class] instanceMethodSignatureForSelector:getterSelector];
+        if(methodSig)
+        {
+            NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+            [invocation setTarget:receiver];
+            [invocation setSelector:getterSelector];
+            [invocation invoke];
+            [invocation getReturnValue:bytes];
+
+            returnValue = [NSValue valueWithBytes:bytes objCType:type];
+            free(bytes);
+        }
     }
-    
-    NSInvocation * invocation=[NSInvocation invocationWithMethodSignature:methodSig];
-    [invocation setTarget:receiver];
-    [invocation setSelector:getterSelector];
-    [invocation invoke];
-    [invocation getReturnValue:bytes];
-
-    NSValue *value = [NSValue valueWithBytes:bytes objCType:type];
-    free(bytes);
-    return value;
+    return returnValue;
 }
 
 @end
