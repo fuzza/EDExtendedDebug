@@ -317,11 +317,6 @@
 				CLASSPREFIX = ED;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Alexey Fayzullov";
-				TargetAttributes = {
-					6003F5AD195388D20070C39A = {
-						TestTargetID = 6003F589195388D20070C39A;
-					};
-				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "EDExtendedDebug" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -612,7 +607,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09DE6246EA87E68613B260E7 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EDExtendedDebug.app/EDExtendedDebug";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -626,7 +620,6 @@
 				);
 				INFOPLIST_FILE = "Tests/Supporting Files/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -635,7 +628,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 020CE14317654FE7AB6AFFFF /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EDExtendedDebug.app/EDExtendedDebug";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -645,7 +637,6 @@
 				GCC_PREFIX_HEADER = "Tests/Supporting Files/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Supporting Files/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
