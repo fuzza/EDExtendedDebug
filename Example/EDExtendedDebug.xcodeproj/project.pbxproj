@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		003EBBA81C55110100D43F91 /* EDPropertyHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EBBA71C55110100D43F91 /* EDPropertyHelperSpec.m */; };
 		003EBBAB1C55377800D43F91 /* EDTests_TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EBBAA1C55377800D43F91 /* EDTests_TestObject.m */; };
+		003EBBB91C55681500D43F91 /* EDIvarHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EBBB81C55681500D43F91 /* EDIvarHelperSpec.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -51,6 +52,7 @@
 		003EBBA71C55110100D43F91 /* EDPropertyHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDPropertyHelperSpec.m; sourceTree = "<group>"; };
 		003EBBA91C55377800D43F91 /* EDTests_TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTests_TestObject.h; sourceTree = "<group>"; };
 		003EBBAA1C55377800D43F91 /* EDTests_TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDTests_TestObject.m; sourceTree = "<group>"; };
+		003EBBB81C55681500D43F91 /* EDIvarHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDIvarHelperSpec.m; sourceTree = "<group>"; };
 		020CE14317654FE7AB6AFFFF /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		09DE6246EA87E68613B260E7 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		12DDAE073DD3D28C6BA3BAA6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				003EBBA71C55110100D43F91 /* EDPropertyHelperSpec.m */,
+				003EBBB81C55681500D43F91 /* EDIvarHelperSpec.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				CCF452D11B0DD47E00D50625 /* EDPropertyValueViewerSpec.m in Sources */,
 				003EBBA81C55110100D43F91 /* EDPropertyHelperSpec.m in Sources */,
 				CCE1B18D1B0631FE00127299 /* EDValueViewerBuilderSpec.m in Sources */,
+				003EBBB91C55681500D43F91 /* EDIvarHelperSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,18 +66,6 @@
     return result;
 }
 
-+ (id)objectValueOfProperty:(objc_property_t)property forObject:(id)anObject
-{
-    NSParameterAssert(property);
-    id __unsafe_unretained resultedObject = nil;
-    NSValue *value = [self valueOfProperty:property forObject:anObject];
-    if(value && (value.objCType[0] == '@' || value.objCType[0] == '#'))
-    {
-        [value getValue:&resultedObject];
-    }
-    return resultedObject;
-}
-
 + (NSValue *)valueOfProperty:(objc_property_t)property forObject:(id)anObject
 {
     NSParameterAssert(property);

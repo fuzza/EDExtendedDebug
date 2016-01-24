@@ -16,7 +16,6 @@
 + (NSString *)nameOfProperty:(objc_property_t)property;
 + (NSString *)encodedReturnTypeStringOfProperty:(objc_property_t)property;
 
-+ (id)objectValueOfProperty:(objc_property_t)property forObject:(id)anObject;
 + (NSValue *)valueOfProperty:(objc_property_t)property forObject:(id)anObject;
 
 @end

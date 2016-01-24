@@ -16,6 +16,7 @@
 #include <vector>
 
 #import "EDPropertyHelper.h"
+#import "NSValue+EDExtendedDebug.h"
 
 @implementation EDCycleDetector
 
@@ -27,14 +28,14 @@
     for(std::vector<objc_property_t>::iterator it = properties.begin(); it != properties.end(); ++it)
     {
         objc_property_t property = *it;
-        id objectValue = [EDPropertyHelper objectValueOfProperty:property forObject:receiver];
+        id objectValue = [[EDPropertyHelper valueOfProperty:property forObject:receiver] objectValue];
         
         std::vector<objc_property_t>childProperties = [self propertiesOfObject:objectValue];
         
         for(std::vector<objc_property_t>::iterator childIt = childProperties.begin(); childIt != childProperties.end(); ++childIt)
         {
             objc_property_t childProperty = *childIt;
-            id childObjectValue = [EDPropertyHelper objectValueOfProperty:childProperty forObject:objectValue];
+            id childObjectValue = [[EDPropertyHelper valueOfProperty:childProperty forObject:objectValue] objectValue];
             
             if(receiver == childObjectValue)
             {
