@@ -13,10 +13,13 @@
 
 #import "EDPropertyViewer.h"
 #import "EDPropertyObjectsViewer.h"
+#import "EDIvarViewer.h"
 
 #import "EDCycleDetector.h"
 
 @implementation NSObject (EDExtendedDebug)
+
+#pragma mark - public
 
 - (NSString *)ED_debugSelf
 {
@@ -73,9 +76,11 @@
     return [detector objectHasRetainCycles:self];
 }
 
-- (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class)viewerClass
+#pragma mark - private
+
+- (NSString *)FUZ_propertiesDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class<EDPropertyViewerProtocol>)viewerClass
 {
-    unsigned int propertiesCount;
+    unsigned int propertiesCount = 0;
     objc_property_t *properties = class_copyPropertyList(class, &propertiesCount);
     
     NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p>\n", [self class], self];
@@ -86,12 +91,32 @@
     
     for (unsigned int i = 0; i < propertiesCount; i++)
     {
-        objc_property_t property = properties[i];
-        NSString *propertyDescription = [viewerClass descriptionOfProperty:property forObject:self valueBuilder:builder indent:1];
+        NSString *propertyDescription = [viewerClass descriptionOfProperty:properties[i] forObject:self valueBuilder:builder indent:1];
         descriptionString = [descriptionString stringByAppendingString:propertyDescription];
     }
     free(properties);
     return descriptionString;
 }
+
+- (NSString *)FUZ_ivarsDescriptionOfClass:(Class)class withValueViewerBuilder:(EDValueViewerBuilder *)builder viewerClass:(Class<EDIvarViewerProtocol>)viewerClass
+{
+    unsigned int ivarsCount = 0;
+    Ivar *ivars = class_copyIvarList(class, &ivarsCount);
+    
+    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p>\n", [self class], self];
+    if(class != [self class])
+    {
+        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p>\n", [self class], class, self];
+    }
+    
+    for (unsigned int i = 0; i < ivarsCount; i++)
+    {
+        NSString *propertyDescription = [viewerClass descriptionOfIvar:ivars[i] forObject:self valueBuilder:builder indent:1];
+        descriptionString = [descriptionString stringByAppendingString:propertyDescription];
+    }
+    free(ivars);
+    return descriptionString;
+}
+
 
 @end
