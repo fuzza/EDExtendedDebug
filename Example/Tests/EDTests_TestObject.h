@@ -10,13 +10,10 @@
 
 @interface EDTests_TestObject : NSObject {
 @public
-    id _publicIvar;
-@package
-    int _packageIvar;
-@private
-    CGRect _privateIvar;
-@protected
-    void(^_protectedIvar)();
+    id _objectIvar;
+    int _intIvar;
+    CGRect _rectIvar;
+    void(^_blockIvar)();
 }
 @property (nonatomic, strong) id simpleProperty;
 @property (nonatomic, getter=nameBreakingCocoaConventions) id customGetterProperty;
