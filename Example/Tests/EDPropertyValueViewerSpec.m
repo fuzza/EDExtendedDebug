@@ -13,6 +13,7 @@
 #import <EDExtendedDebug/EDPropertyValueViewer.h>
 #import <EDExtendedDebug/EDValueFormatterProtocol.h>
 #import <EDExtendedDebug/EDPropertyHelper.h>
+#import "EDTests_TestObject.h"
 
 SpecBegin(EDPropertyValueViewer)
 
@@ -128,6 +129,21 @@ describe(@"showValue", ^{
         NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
                                                   ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted atomic");
+    });
+    
+    it(@"should return nil when value is nil as well", ^{
+        [[[propertyHelperMock stub] andReturn:nil] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
+        
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
+        EXP_expect(resultString).to.beNil;
+    });
+    
+    it(@"should return nil when value is nil as well", ^{
+        EDTests_TestObject *testObject = [EDTests_TestObject new];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "customGetterProperty")
+                                                  ofObject:testObject];
+        EXP_expect(resultString).to.equal(@"Exception thrown while obtaining value");
     });
 });
 

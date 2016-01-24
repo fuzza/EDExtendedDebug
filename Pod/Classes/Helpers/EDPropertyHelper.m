@@ -14,6 +14,7 @@
 
 + (SEL)getterForProperty:(objc_property_t)property
 {
+    NSParameterAssert(property);
     SEL result = NULL;
     char *getterName = property_copyAttributeValue(property, "G");
     if(getterName == NULL)
@@ -29,6 +30,7 @@
 
 + (SEL)setterForProperty:(objc_property_t)property
 {
+    NSParameterAssert(property);
     SEL result = NULL;
     char *setterName = property_copyAttributeValue(property, "S");
     if(setterName == NULL)
@@ -51,11 +53,13 @@
 
 + (NSString *)nameOfProperty:(objc_property_t)property
 {
+    NSParameterAssert(property);
     return [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
 }
 
 + (NSString *)encodedReturnTypeStringOfProperty:(objc_property_t)property
 {
+    NSParameterAssert(property);
     char *type = [self copyEncodedReturnTypeOfProperty:property];
     NSString *result = [NSString stringWithUTF8String:type];
     free(type);
@@ -64,6 +68,7 @@
 
 + (id)objectValueOfProperty:(objc_property_t)property forObject:(id)anObject
 {
+    NSParameterAssert(property);
     id __unsafe_unretained resultedObject = nil;
     NSValue *value = [self valueOfProperty:property forObject:anObject];
     if(value && (value.objCType[0] == '@' || value.objCType[0] == '#'))
@@ -75,6 +80,7 @@
 
 + (NSValue *)valueOfProperty:(objc_property_t)property forObject:(id)anObject
 {
+    NSParameterAssert(property);
     SEL getterSelector = [self getterForProperty:property];
     char *encodedType = [self copyEncodedReturnTypeOfProperty:property];
     NSValue *result = [self valueOfPropertyByGetter:getterSelector ofType:encodedType forObject:anObject];
@@ -117,6 +123,7 @@
 
 + (char *)copyEncodedReturnTypeOfProperty:(objc_property_t)property
 {
+    NSParameterAssert(property);
     return property_copyAttributeValue(property, "T");
 }
 
