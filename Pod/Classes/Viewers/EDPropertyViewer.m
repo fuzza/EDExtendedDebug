@@ -8,6 +8,7 @@
 
 #import "EDPropertyViewer.h"
 #import "EDPropertyValueViewer.h"
+#import "EDPropertyHelper.h"
 
 @implementation EDPropertyViewer
 
@@ -18,11 +19,9 @@
     {
         resultDescription = [resultDescription stringByAppendingString:@"\t"];
     }
-    resultDescription = [resultDescription stringByAppendingFormat:@"%s : ", property_getName(property)];
+    resultDescription = [resultDescription stringByAppendingFormat:@"%@ : ", [EDPropertyHelper nameOfProperty:property]];
     
-    NSString *getterName = [self getterNameForProperty:property];
-    
-    const char *encodedReturnType = property_copyAttributeValue(property, "T");
+    NSString *encodedReturnType = [EDPropertyHelper encodedReturnTypeStringOfProperty:property];
     
     if(![self returnTypeIsAllowed:encodedReturnType])
     {
@@ -31,7 +30,7 @@
     else {
         EDPropertyValueViewer *viewer = [builder build];
 
-        NSString *valueDescription = [viewer showValueWithReceiver:object key:getterName objCType:encodedReturnType];
+        NSString *valueDescription = [viewer showValueForProperty:property ofObject:object];
         if (valueDescription) {
             resultDescription = [resultDescription stringByAppendingFormat:@"%@\n", valueDescription];
         }
@@ -42,22 +41,7 @@
     return resultDescription;
 }
 
-+ (NSString *)getterNameForProperty:(objc_property_t)property
-{
-    const char *getterName = property_copyAttributeValue(property, "G");
-    if(getterName == nil)
-    {
-        return [self nameOfProperty:property];
-    }
-    return [NSString stringWithCString:getterName encoding:NSUTF8StringEncoding];
-}
-
-+ (NSString *)nameOfProperty:(objc_property_t)property
-{
-    return [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-}
-
-+ (BOOL)returnTypeIsAllowed:(const char *)type
++ (BOOL)returnTypeIsAllowed:(NSString *)type
 {
     return YES;
 }

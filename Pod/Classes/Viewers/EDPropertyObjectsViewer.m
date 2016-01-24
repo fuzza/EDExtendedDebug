@@ -10,13 +10,10 @@
 
 @implementation EDPropertyObjectsViewer
 
-+ (BOOL)returnTypeIsAllowed:(const char *)type
++ (BOOL)returnTypeIsAllowed:(NSString *)type
 {
-    if(type[0] == '@')
-    {
-        return YES;
-    }
-    return NO;
+    unichar firstSymbol = [type characterAtIndex:0];
+    return (firstSymbol == '@' || firstSymbol == '#');
 }
 
 @end

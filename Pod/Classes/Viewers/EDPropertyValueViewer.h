@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 #import "EDFormatters.h"
 
 @interface EDPropertyValueViewer : NSObject
@@ -16,11 +17,6 @@
 @property (nonatomic, strong) id<EDValueFormatterProtocol> atomicTypesFormatter;
 @property (nonatomic, strong) id<EDValueFormatterProtocol> structFormatter;
 
-@property (nonatomic, strong, readonly) id receiver;
-@property (nonatomic, strong, readonly) NSString *key;
-@property (nonatomic, assign, readonly) const char *objCType;
-
-- (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
-- (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type;
+- (NSString *)showValueForProperty:(objc_property_t)property ofObject:(id)anObject;
 
 @end

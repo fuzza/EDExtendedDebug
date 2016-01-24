@@ -8,28 +8,21 @@
 
 #import "EDPropertyValueViewer.h"
 #import "EDFormatters.h"
+#import "EDPropertyHelper.h"
 
 @interface EDPropertyValueViewer ()
-
-@property (nonatomic, strong, readwrite) id receiver;
-@property (nonatomic, strong, readwrite) NSString *key;
-@property (nonatomic, assign, readwrite) const char *objCType;
 
 @end
 
 @implementation EDPropertyValueViewer
 
-- (NSString *)showValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
+- (NSString *)showValueForProperty:(objc_property_t)property ofObject:(id)anObject
 {
     NSString *valueDescription = nil;
-    
-    self.receiver = receiver;
-    self.key = key;
-    self.objCType = type;
-
     NSValue *value = nil;
+    
     @try {
-        value = [self obtainValueWithReceiver:receiver key:key objCType:type];
+        value = [EDPropertyHelper valueOfProperty:property forObject:anObject];
     }
     @catch (NSException *exception) {
         valueDescription = @"Exception thrown while obtaining value";
@@ -70,38 +63,6 @@
         }
     }
     return valueDescription;
-}
-
-- (NSValue *)obtainValueWithReceiver:(id)receiver key:(NSString *)key objCType:(const char *)type
-{
-    NSValue *returnValue = nil;
-    SEL getterSelector = sel_getUid([key UTF8String]);
-
-// -respondsToSelector: check is vital, since there's protocols with optional properties.
-// Instances of classes, that conform to protocol with optional properties has descriptions
-// of that properties returned in class_copyPropertyList, however, no getter and setter implemented
-// Fixes crash for example project on iOS 9 for -[UIView ED_debugSelf]
-    if ([receiver respondsToSelector:getterSelector]) {
-        NSUInteger valueSize;
-        NSUInteger align;
-        
-        NSGetSizeAndAlignment(type, &valueSize, &align);
-        void *bytes = malloc(valueSize);
-       
-        NSMethodSignature * methodSig = [[receiver class] instanceMethodSignatureForSelector:getterSelector];
-        if(methodSig)
-        {
-            NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:methodSig];
-            [invocation setTarget:receiver];
-            [invocation setSelector:getterSelector];
-            [invocation invoke];
-            [invocation getReturnValue:bytes];
-
-            returnValue = [NSValue valueWithBytes:bytes objCType:type];
-            free(bytes);
-        }
-    }
-    return returnValue;
 }
 
 @end
