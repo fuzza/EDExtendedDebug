@@ -56,6 +56,20 @@
     return descriptionString;
 }
 
+- (NSString *)ED_debugSelfMethods
+{
+    Class objectClass = [self class];
+    NSString *descriptionString = [self FUZ_methodsDescriptionOfClass:objectClass];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSuperMethods
+{
+    Class objectClass = [[self class] superclass];
+    NSString *descriptionString = [self FUZ_methodsDescriptionOfClass:objectClass];
+    return descriptionString;
+}
+
 - (NSString *)ED_debugSuperProperties
 {
     Class objectClass = [[self class] superclass];
@@ -166,6 +180,26 @@
         descriptionString = [descriptionString stringByAppendingString:propertyDescription];
     }
     free(ivars);
+    return descriptionString;
+}
+
+- (NSString *)FUZ_methodsDescriptionOfClass:(Class)class
+{
+    unsigned int methodsCount = 0;
+    Method *methods = class_copyMethodList(class, &methodsCount);
+    
+    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p - methods>\n", [self class], self];
+    if(class != [self class])
+    {
+        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p - methods>\n", [self class], class, self];
+    }
+    
+    for (unsigned int i = 0; i < methodsCount; i++)
+    {
+        NSString *methodDescription = [NSString stringWithFormat:@"\t%@\n", NSStringFromSelector(method_getName(methods[i]))];
+        descriptionString = [descriptionString stringByAppendingString:methodDescription];
+    }
+    free(methods);
     return descriptionString;
 }
 

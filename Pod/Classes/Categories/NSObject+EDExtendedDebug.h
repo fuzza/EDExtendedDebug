@@ -14,6 +14,8 @@
 - (NSString *)ED_debugSuperProperties;
 - (NSString *)ED_debugSelfIvars;
 - (NSString *)ED_debugSuperIvars;
+- (NSString *)ED_debugSelfMethods;
+- (NSString *)ED_debugSuperMethods;
 
 - (NSString *)ED_debugSelfPropertyObjects;
 - (NSString *)ED_debugSuperPropertyObjects;

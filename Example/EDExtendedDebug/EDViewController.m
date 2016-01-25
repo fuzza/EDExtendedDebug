@@ -59,6 +59,9 @@
     
     NSLog(@"%@", [self.view ED_debugSelfIvarObjectsAddress]);
     NSLog(@"%@", [self.view ED_debugSuperIvarObjectsAddress]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfMethods]);
+    NSLog(@"%@", [self.view ED_debugSuperMethods]);
 }
 
 @end
