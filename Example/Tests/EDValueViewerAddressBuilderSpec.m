@@ -19,7 +19,7 @@ describe(@"build", ^{
     
     it(@"should return filled viewer and call setupFormatters", ^{
         
-        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder new];
+        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
         
         id sutMock = OCMPartialMock(sut);
         [[sutMock expect] setupFormatter];
@@ -34,7 +34,7 @@ describe(@"build", ^{
 describe(@"setupFormatter", ^{
     it(@"should set correct formatters to viewer", ^{
         
-        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder new];
+        EDValueViewerAddressBuilder *sut = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
         id sutMock = OCMPartialMock(sut);
         id viewerMock = OCMClassMock([EDPropertyValueViewer class]);
         [[[sutMock stub] andReturn:viewerMock] viewer];

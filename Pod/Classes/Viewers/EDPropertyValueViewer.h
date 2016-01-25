@@ -8,14 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import "EDFormatters.h"
+#import "EDValueViewerProtocol.h"
 
-@interface EDPropertyValueViewer : NSObject
-
-@property (nonatomic, strong) id<EDValueFormatterProtocol> objectFormatter;
-@property (nonatomic, strong) id<EDValueFormatterProtocol> classFormatter;
-@property (nonatomic, strong) id<EDValueFormatterProtocol> atomicTypesFormatter;
-@property (nonatomic, strong) id<EDValueFormatterProtocol> structFormatter;
+@interface EDPropertyValueViewer : NSObject <EDValueViewerProtocol>
 
 - (NSString *)showValueForProperty:(objc_property_t)property ofObject:(id)anObject;
 

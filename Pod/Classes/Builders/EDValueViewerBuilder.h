@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EDPropertyValueViewer.h"
 #import "EDFormatters.h"
+#import "EDValueViewerProtocol.h"
 
 @interface EDValueViewerBuilder : NSObject
 
-@property (nonatomic, strong) EDPropertyValueViewer *viewer;
++ (instancetype)valueViewerBuilderWithViewerClass:(Class<EDValueViewerProtocol>)viewerClass;
+- (instancetype)initWithViewerClass:(Class<EDValueViewerProtocol>)viewerClass;
 
-- (EDPropertyValueViewer *)build;
+@property (nonatomic, strong, readonly) id<EDValueViewerProtocol> viewer;
+@property (nonatomic, assign, readonly) Class<EDValueViewerProtocol> viewerClass;
+
+- (id<EDValueViewerProtocol>)build;
 
 - (void)setupFormatter;
 - (void)setupObjectFormatter;

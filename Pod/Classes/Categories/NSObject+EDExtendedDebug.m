@@ -14,6 +14,9 @@
 #import "EDPropertyViewer.h"
 #import "EDPropertyObjectsViewer.h"
 #import "EDIvarViewer.h"
+#import "EDIvarObjectsViewer.h"
+#import "EDPropertyValueViewer.h"
+#import "EDIvarValueViewer.h"
 
 #import "EDCycleDetector.h"
 
@@ -24,7 +27,7 @@
 - (NSString *)ED_debugSelf
 {
     Class objectClass = [self class];
-    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyViewer class]];
     return descriptionString;
 }
@@ -32,7 +35,7 @@
 - (NSString *)ED_debugSelfObjects
 {
     Class objectClass = [self class];
-    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 }
@@ -40,7 +43,7 @@
 - (NSString *)ED_debugSuperObjects
 {
     Class objectClass = [[self class] superclass];
-    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 }
@@ -48,7 +51,7 @@
 - (NSString *)ED_debugSuper
 {
     Class objectClass = [[self class] superclass];
-    EDValueViewerBuilder *builder = [EDValueViewerBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyViewer class]];
     return descriptionString;
 }
@@ -56,7 +59,7 @@
 - (NSString *)ED_debugSelfObjectsAddress
 {
     Class objectClass = [self class];
-    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 
@@ -65,7 +68,7 @@
 - (NSString *)ED_debugSuperObjectsAddress
 {
     Class objectClass = [[self class] superclass];
-    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder new];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
     return descriptionString;
 }

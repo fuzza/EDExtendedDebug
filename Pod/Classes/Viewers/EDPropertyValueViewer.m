@@ -10,11 +10,12 @@
 #import "EDFormatters.h"
 #import "EDPropertyHelper.h"
 
-@interface EDPropertyValueViewer ()
-
-@end
-
 @implementation EDPropertyValueViewer
+
+@synthesize structFormatter;
+@synthesize objectFormatter;
+@synthesize classFormatter;
+@synthesize atomicTypesFormatter;
 
 - (NSString *)showValueForProperty:(objc_property_t)property ofObject:(id)anObject
 {
