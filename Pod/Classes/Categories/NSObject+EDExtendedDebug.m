@@ -24,7 +24,7 @@
 
 #pragma mark - public
 
-- (NSString *)ED_debugSelf
+- (NSString *)ED_debugSelfProperties
 {
     Class objectClass = [self class];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
@@ -32,7 +32,7 @@
     return descriptionString;
 }
 
-- (NSString *)ED_debugSelfObjects
+- (NSString *)ED_debugSelfPropertyObjects
 {
     Class objectClass = [self class];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
@@ -40,15 +40,23 @@
     return descriptionString;
 }
 
-- (NSString *)ED_debugSuperObjects
+- (NSString *)ED_debugSelfIvars
 {
-    Class objectClass = [[self class] superclass];
-    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
-    NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
+    Class objectClass = [self class];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarViewer class]];
     return descriptionString;
 }
 
-- (NSString *)ED_debugSuper
+- (NSString *)ED_debugSelfIvarObjects
+{
+    Class objectClass = [self class];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarObjectsViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSuperProperties
 {
     Class objectClass = [[self class] superclass];
     EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
@@ -56,7 +64,31 @@
     return descriptionString;
 }
 
-- (NSString *)ED_debugSelfObjectsAddress
+- (NSString *)ED_debugSuperPropertyObjects
+{
+    Class objectClass = [[self class] superclass];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
+    NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSuperIvars
+{
+    Class objectClass = [[self class] superclass];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSuperIvarObjects
+{
+    Class objectClass = [[self class] superclass];
+    EDValueViewerBuilder *builder = [EDValueViewerBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarObjectsViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSelfPropertyObjectsAddress
 {
     Class objectClass = [self class];
     EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
@@ -65,11 +97,27 @@
 
 }
 
-- (NSString *)ED_debugSuperObjectsAddress
+- (NSString *)ED_debugSuperPropertyObjectsAddress
 {
     Class objectClass = [[self class] superclass];
     EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDPropertyValueViewer class]];
     NSString *descriptionString = [self FUZ_propertiesDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDPropertyObjectsViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSelfIvarObjectsAddress
+{
+    Class objectClass = [self class];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarObjectsViewer class]];
+    return descriptionString;
+}
+
+- (NSString *)ED_debugSuperIvarObjectsAddress
+{
+    Class objectClass = [[self class] superclass];
+    EDValueViewerBuilder *builder = [EDValueViewerAddressBuilder valueViewerBuilderWithViewerClass:[EDIvarValueViewer class]];
+    NSString *descriptionString = [self FUZ_ivarsDescriptionOfClass:objectClass withValueViewerBuilder:builder viewerClass:[EDIvarObjectsViewer class]];
     return descriptionString;
 }
 
@@ -86,10 +134,10 @@
     unsigned int propertiesCount = 0;
     objc_property_t *properties = class_copyPropertyList(class, &propertiesCount);
     
-    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p>\n", [self class], self];
+    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p - properties>\n", [self class], self];
     if(class != [self class])
     {
-        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p>\n", [self class], class, self];
+        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p - properties>\n", [self class], class, self];
     }
     
     for (unsigned int i = 0; i < propertiesCount; i++)
@@ -106,10 +154,10 @@
     unsigned int ivarsCount = 0;
     Ivar *ivars = class_copyIvarList(class, &ivarsCount);
     
-    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p>\n", [self class], self];
+    NSString *descriptionString = [NSString stringWithFormat:@"<%@ : %p - ivars>\n", [self class], self];
     if(class != [self class])
     {
-        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p>\n", [self class], class, self];
+        descriptionString = [NSString stringWithFormat:@"<%@->%@ : %p - ivars>\n", [self class], class, self];
     }
     
     for (unsigned int i = 0; i < ivarsCount; i++)
@@ -120,6 +168,5 @@
     free(ivars);
     return descriptionString;
 }
-
 
 @end

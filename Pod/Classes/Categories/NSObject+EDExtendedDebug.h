@@ -10,14 +10,20 @@
 
 @interface NSObject (EDExtendedDebug)
 
-- (NSString *)ED_debugSelf;
-- (NSString *)ED_debugSuper;
+- (NSString *)ED_debugSelfProperties;
+- (NSString *)ED_debugSuperProperties;
+- (NSString *)ED_debugSelfIvars;
+- (NSString *)ED_debugSuperIvars;
 
-- (NSString *)ED_debugSelfObjects;
-- (NSString *)ED_debugSuperObjects;
+- (NSString *)ED_debugSelfPropertyObjects;
+- (NSString *)ED_debugSuperPropertyObjects;
+- (NSString *)ED_debugSelfIvarObjects;
+- (NSString *)ED_debugSuperIvarObjects;
 
-- (NSString *)ED_debugSelfObjectsAddress;
-- (NSString *)ED_debugSuperObjectsAddress;
+- (NSString *)ED_debugSelfPropertyObjectsAddress;
+- (NSString *)ED_debugSuperPropertyObjectsAddress;
+- (NSString *)ED_debugSelfIvarObjectsAddress;
+- (NSString *)ED_debugSuperIvarObjectsAddress;
 
 - (NSString *)ED_detectRetainCycles;
 
