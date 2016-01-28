@@ -11,7 +11,10 @@
 @class EDViewController;
 
 @interface EDObject : NSObject
-
+{
+    @public
+    id _ivar;
+}
 @property (nonatomic, strong) EDViewController *controller;
 
 @end

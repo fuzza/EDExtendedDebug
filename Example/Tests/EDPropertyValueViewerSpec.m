@@ -12,6 +12,8 @@
 
 #import <EDExtendedDebug/EDPropertyValueViewer.h>
 #import <EDExtendedDebug/EDValueFormatterProtocol.h>
+#import <EDExtendedDebug/EDPropertyHelper.h>
+#import "EDTests_TestObject.h"
 
 SpecBegin(EDPropertyValueViewer)
 
@@ -25,6 +27,7 @@ describe(@"showValue", ^{
     id __block classFormatterMock;
     id __block atomicTypesFormatterMock;
     id __block structFormatterMock;
+    id __block propertyHelperMock;
 
     beforeEach(^{
         sut = [EDPropertyValueViewer new];
@@ -35,6 +38,7 @@ describe(@"showValue", ^{
         classFormatterMock = OCMProtocolMock(@protocol(EDValueFormatterProtocol));
         atomicTypesFormatterMock = OCMProtocolMock(@protocol(EDValueFormatterProtocol));
         structFormatterMock = OCMProtocolMock(@protocol(EDValueFormatterProtocol));
+        propertyHelperMock = OCMClassMock([EDPropertyHelper class]);
         
         sut.objectFormatter = objectFormatterMock;
         sut.classFormatter = classFormatterMock;
@@ -50,79 +54,96 @@ describe(@"showValue", ^{
         [classFormatterMock stopMocking];
         [atomicTypesFormatterMock stopMocking];
         [structFormatterMock stopMocking];
+        [propertyHelperMock stopMocking];
     });
     
     it(@"should return nil if args aren't passed", ^{
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
-        
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.beNil;
-        
     });
     
     it(@"should return formatted object", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
+        [[[propertyHelperMock stub] andReturn:valueMock] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
         
         const char *type = @encode(id);
     
         [[[valueMock stub] andReturnValue:OCMOCK_VALUE(type)] objCType];
         [[[objectFormatterMock stub] andReturn:@"formatted object"] formatValue:valueMock];
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted object");
     });
     
     it(@"should return formatted struct", ^{
         
-        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
+        [[[propertyHelperMock stub] andReturn:valueMock] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
         
         const char *type = "{";
         
         [[[valueMock stub] andReturnValue:OCMOCK_VALUE(type)] objCType];
         [[[structFormatterMock stub] andReturn:@"formatted struct"] formatValue:valueMock];
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted struct");
     });
     
     it(@"should return formatted class", ^{
-        
-        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
+        [[[propertyHelperMock stub] andReturn:valueMock] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
         
         const char *type = @encode(Class);
         
         [[[valueMock stub] andReturnValue:OCMOCK_VALUE(type)] objCType];
         [[[classFormatterMock stub] andReturn:@"formatted class"] formatValue:valueMock];
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted class");
     });
     
     it(@"should return formatted class", ^{
-        
-        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
+        [[[propertyHelperMock stub] andReturn:valueMock] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
         
         const char *type = @encode(Class);
         
         [[[valueMock stub] andReturnValue:OCMOCK_VALUE(type)] objCType];
         [[[classFormatterMock stub] andReturn:@"formatted class"] formatValue:valueMock];
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted class");
     });
     
     it(@"should return formatted atomic", ^{
-        
-        [[[sutMock stub] andReturn:valueMock] obtainValueWithReceiver:[OCMArg any] key:[OCMArg any] objCType:[OCMArg anyPointer]];
+        [[[propertyHelperMock stub] andReturn:valueMock] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
         
         const char *type = @encode(int);
         
         [[[valueMock stub] andReturnValue:OCMOCK_VALUE(type)] objCType];
         [[[atomicTypesFormatterMock stub] andReturn:@"formatted atomic"] formatValue:valueMock];
         
-        NSString *resultString = [sut showValueWithReceiver:self key:@"description" objCType:@encode(id)];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
         EXP_expect(resultString).to.equal(@"formatted atomic");
+    });
+    
+    it(@"should return nil when value is nil as well", ^{
+        [[[propertyHelperMock stub] andReturn:nil] valueOfProperty:class_getProperty([self class], "description") forObject:[OCMArg any]];
+        
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "description")
+                                                  ofObject:self];
+        EXP_expect(resultString).to.beNil;
+    });
+    
+    it(@"should return nil when value is nil as well", ^{
+        EDTests_TestObject *testObject = [EDTests_TestObject new];
+        NSString *resultString = [sut showValueForProperty:class_getProperty([self class], "customGetterProperty")
+                                                  ofObject:testObject];
+        EXP_expect(resultString).to.equal(@"Exception thrown while obtaining value");
     });
 });
 

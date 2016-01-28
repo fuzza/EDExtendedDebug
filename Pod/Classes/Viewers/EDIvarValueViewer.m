@@ -1,29 +1,27 @@
 //
-//  FUZPropertyViewStrategy.m
-//  FUZExtendedDebug
+//  EDIvarValueViewer.m
+//  Pods
 //
-//  Created by Alexey Fayzullov on 5/14/15.
-//  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
+//  Created by Petro Korienev on 1/25/16.
+//
 //
 
-#import "EDPropertyValueViewer.h"
-#import "EDFormatters.h"
-#import "EDPropertyHelper.h"
+#import "EDIvarValueViewer.h"
+#import "EDIvarHelper.h"
 
-@implementation EDPropertyValueViewer
+@implementation EDIvarValueViewer
 
 @synthesize structFormatter;
 @synthesize objectFormatter;
 @synthesize classFormatter;
 @synthesize atomicTypesFormatter;
 
-- (NSString *)showValueForProperty:(objc_property_t)property ofObject:(id)anObject
-{
+- (NSString *)showValueForIvar:(Ivar)ivar ofObject:(id)anObject {
     NSString *valueDescription = nil;
     NSValue *value = nil;
     
     @try {
-        value = [EDPropertyHelper valueOfProperty:property forObject:anObject];
+        value = [EDIvarHelper valueOfIvar:ivar forObject:anObject];
     }
     @catch (NSException *exception) {
         valueDescription = @"Exception thrown while obtaining value";

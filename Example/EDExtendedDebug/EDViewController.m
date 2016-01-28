@@ -36,25 +36,32 @@
 
     self.object = [EDObject new];
     self.object.controller = self;
+    self.object->_ivar = self;
     
     NSLog(@"%@", [self ED_detectRetainCycles]);
     
-    NSLog(@"%@", [self ED_debugSelf]);
-    NSLog(@"%@", [self.view ED_debugSelf]);
-    NSLog(@"%@", [self.view ED_debugSuper]);
+    NSLog(@"%@", [self ED_debugSelfProperties]);
+    NSLog(@"%@", [self.view ED_debugSelfProperties]);
+    NSLog(@"%@", [self.view ED_debugSuperProperties]);
 
-    NSLog(@"%@", [self.view ED_debugSelfObjects]);
-    NSLog(@"%@", [self.view ED_debugSuperObjects]);
+    NSLog(@"%@", [self.view ED_debugSelfPropertyObjects]);
+    NSLog(@"%@", [self.view ED_debugSuperPropertyObjects]);
     
-    NSLog(@"%@", [self.view ED_debugSelfObjectsAddress]);
-    NSLog(@"%@", [self.view ED_debugSuperObjectsAddress]);
+    NSLog(@"%@", [self.view ED_debugSelfPropertyObjectsAddress]);
+    NSLog(@"%@", [self.view ED_debugSuperPropertyObjectsAddress]);
 
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"%@", [self ED_debugSelfIvars]);
+    NSLog(@"%@", [self.view ED_debugSelfIvars]);
+    NSLog(@"%@", [self.view ED_debugSuperIvars]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfIvarObjects]);
+    NSLog(@"%@", [self.view ED_debugSuperIvarObjects]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfIvarObjectsAddress]);
+    NSLog(@"%@", [self.view ED_debugSuperIvarObjectsAddress]);
+    
+    NSLog(@"%@", [self.view ED_debugSelfMethods]);
+    NSLog(@"%@", [self.view ED_debugSuperMethods]);
 }
 
 @end

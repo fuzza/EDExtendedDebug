@@ -1,36 +1,36 @@
 //
-//  FUZPropertyViewer.m
-//  FUZExtendedDebug
+//  EDIvarViewer.m
+//  Pods
 //
-//  Created by Alexey Fayzullov on 5/14/15.
-//  Copyright (c) 2015 Alexey Fayzullov. All rights reserved.
+//  Created by Petro Korienev on 1/25/16.
+//
 //
 
-#import "EDPropertyViewer.h"
-#import "EDPropertyValueViewer.h"
-#import "EDPropertyHelper.h"
+#import "EDIvarViewer.h"
+#import "EDIvarValueViewer.h"
+#import "EDIvarHelper.h"
 
-@implementation EDPropertyViewer
+@implementation EDIvarViewer
 
-+ (NSString *)descriptionOfProperty:(objc_property_t)property forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent
++ (NSString *)descriptionOfIvar:(Ivar)ivar forObject:(id)object valueBuilder:(EDValueViewerBuilder *)builder indent:(NSInteger)indent
 {
     NSString *resultDescription = @"";
     for (NSInteger i = 0; i < indent; i++)
     {
         resultDescription = [resultDescription stringByAppendingString:@"\t"];
     }
-    resultDescription = [resultDescription stringByAppendingFormat:@"%@ : ", [EDPropertyHelper nameOfProperty:property]];
+    resultDescription = [resultDescription stringByAppendingFormat:@"%@ : ", [EDIvarHelper nameOfIvar:ivar]];
     
-    NSString *encodedReturnType = [EDPropertyHelper encodedReturnTypeStringOfProperty:property];
+    NSString *encodedReturnType = [EDIvarHelper encodedTypeForIvar:ivar];
     
     if(![self returnTypeIsAllowed:encodedReturnType])
     {
         resultDescription = [resultDescription stringByAppendingString:@" type is unsupported by current version of ED_extendedDebug\n"];
     }
     else {
-        EDPropertyValueViewer *viewer = [builder build];
-
-        NSString *valueDescription = [viewer showValueForProperty:property ofObject:object];
+        EDIvarValueViewer *viewer = [builder build];
+        
+        NSString *valueDescription = [viewer showValueForIvar:ivar ofObject:object];
         if (valueDescription) {
             resultDescription = [resultDescription stringByAppendingFormat:@"%@\n", valueDescription];
         }

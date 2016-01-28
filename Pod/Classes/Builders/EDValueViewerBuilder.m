@@ -7,16 +7,38 @@
 //
 
 #import "EDValueViewerBuilder.h"
+#import <objc/runtime.h>
 
 @interface EDValueViewerBuilder ()
+
+@property (nonatomic, strong, readwrite) id<EDValueViewerProtocol> viewer;
+@property (nonatomic, assign, readwrite) Class<EDValueViewerProtocol> viewerClass;
 
 @end
 
 @implementation EDValueViewerBuilder
 
-- (EDPropertyValueViewer *)build
+- (instancetype)init {
+    NSAssert(NO, @"Forbidden; Use -initWithViewerClass: instead");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
++ (instancetype)valueViewerBuilderWithViewerClass:(Class<EDValueViewerProtocol>)viewerClass {
+    return [[self alloc] initWithViewerClass:viewerClass];
+}
+
+- (instancetype)initWithViewerClass:(Class<EDValueViewerProtocol>)viewerClass {
+    self = [super init];
+    if (self) {
+        self.viewerClass = viewerClass;
+    }
+    return self;
+}
+
+- (id<EDValueViewerProtocol>)build
 {
-    self.viewer = [[EDPropertyValueViewer alloc] init];
+    self.viewer = [[self.viewerClass alloc] init];
     [self setupFormatter];
     return self.viewer;
 }

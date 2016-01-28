@@ -15,6 +15,9 @@
 #include <stdio.h>
 #include <vector>
 
+#import "EDPropertyHelper.h"
+#import "NSValue+EDExtendedDebug.h"
+
 @implementation EDCycleDetector
 
 - (NSString *)objectHasRetainCycles:(id)receiver
@@ -25,14 +28,14 @@
     for(std::vector<objc_property_t>::iterator it = properties.begin(); it != properties.end(); ++it)
     {
         objc_property_t property = *it;
-        id objectValue = [self objectFromProperty:property receiver:receiver];
+        id objectValue = [[EDPropertyHelper valueOfProperty:property forObject:receiver] objectValue];
         
         std::vector<objc_property_t>childProperties = [self propertiesOfObject:objectValue];
         
         for(std::vector<objc_property_t>::iterator childIt = childProperties.begin(); childIt != childProperties.end(); ++childIt)
         {
             objc_property_t childProperty = *childIt;
-            id childObjectValue = [self objectFromProperty:childProperty receiver:objectValue];
+            id childObjectValue = [[EDPropertyHelper valueOfProperty:childProperty forObject:objectValue] objectValue];
             
             if(receiver == childObjectValue)
             {
@@ -46,28 +49,6 @@
     return returnValue;
 }
 
-- (id)objectFromProperty:(objc_property_t)property receiver:(id)receiver
-{
-    const char *encodedReturnType = property_copyAttributeValue(property, "T");
-    NSString *getter = [self getterNameForProperty:property];
-    
-    EDValueViewerAddressBuilder *builder = [[EDValueViewerAddressBuilder alloc] init];
-    [builder build];
-    
-    NSValue *resultValue = [builder.viewer obtainValueWithReceiver:receiver key:getter objCType:encodedReturnType];
-    
-    if(resultValue)
-    {
-        __unsafe_unretained id resultObject;
-        [resultValue getValue:&resultObject];
-        if(resultObject)
-        {
-            return resultObject;
-        }
-    }
-    return nil;
-}
-
 - (std::vector<objc_property_t>)propertiesOfObject:(id)object
 {
     unsigned int propertiesCount;
@@ -75,7 +56,7 @@
     
     std::vector<objc_property_t> filteredProperties;
     
-    for(int i = 0; i < propertiesCount; i++)
+    for(unsigned int i = 0; i < propertiesCount; i++)
     {
         const char *encodedReturnType = property_copyAttributeValue(properties[i], "T");
         char *strongAttribute = property_copyAttributeValue(properties[i], "&");
@@ -87,22 +68,6 @@
     }
     free(properties);
     return filteredProperties;
-}
-
-
-- (NSString *)getterNameForProperty:(objc_property_t)property
-{
-    const char *getterName = property_copyAttributeValue(property, "G");
-    if(getterName == nil)
-    {
-        return [self nameOfProperty:property];
-    }
-    return [NSString stringWithCString:getterName encoding:NSUTF8StringEncoding];
-}
-
-- (NSString *)nameOfProperty:(objc_property_t)property
-{
-    return [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
 }
 
 @end
